@@ -24,11 +24,25 @@ const Dashboard = () => {
     Series: "Symbol",
     Symbol: "Symbol",
   });
-  const [fromDate,setFromDate] = useState("dd-mm-yyyy");
-  const [toDate,setToDate] = useState("dd-mm-yyyy");
-  const handleStockDetailedData = () =>{
-    
-  }
+  const [fromDate,setFromDate] = useState("2020-05-04");
+  const [toDate,setToDate] = useState("2021-04-30");
+
+  console.log(stockData)
+
+  useEffect(()=>{
+    let data = [];
+    let currentDate = new Date(fromDate);
+    let endDate = new Date(toDate);
+    for(let i = 0;i<250;i++){
+      if(historicalData[stockSymbol] && fromDate === historicalData[stockSymbol][i]?.Date){
+        while(currentDate <= endDate && i<250){
+          data.push(historicalData[stockSymbol][i++]);
+          currentDate.setDate(currentDate.getDate()+1);
+        }
+      }
+    }
+    setStockData(data);
+  },[fromDate,toDate])
   useEffect(() => {
     for (let i = 0; i < allStocks.length; i++) {
       if (stockSymbol == allStocks[i].Symbol) {
@@ -40,9 +54,6 @@ const Dashboard = () => {
           Symbol: allStocks[i].Symbol,
         });
       }
-    }
-    for(let i = 0;i<stockData.length;i++){
-      console.log(stockData[i]);
     }
   }, [stockSymbol]);
   return (
@@ -64,7 +75,6 @@ const Dashboard = () => {
         <div className='flex justify-end gap-4'>
             <input type="date" value={fromDate} onChange={e=>setFromDate(e.target.value)} max="2021-04-29" min="2020-05-04" className='my-2 py-1 px-4 rounded-md bg-blue-950 border-2 border-gray-600' />
             <input type="date" value={toDate} onChange={e=>setToDate(e.target.value)} max="2021-04-30" min="2020-05-05" className='my-2 py-1 px-4 rounded-md bg-blue-950 border-2 border-gray-600' />
-            <button className=" my-2 px-4 border-2 border-blue-400 " onClick={handleStockDetailedData} >Filter</button>
         </div>
         <div className='flex flex-wrap justify-between'>
             <div className={`h-full card rounded-md relative p-8 border-2 bg-gray-300 shadow-md my-3 ${darkMode?"bg-gray-900 border-gray-800":"bg-white border-blue-100"}`}
@@ -130,13 +140,13 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="pr-10 py-3" style={{ height: "50vh" }}>
-          <Chart>Chart</Chart>
+          <Chart stockData={stockData} >Chart</Chart>
         </div>
         <div className="py-3">
-          <Details details={stockDetails} />
+          <Details details={stockData} />
         </div>
         <div className="py-3">
-          <Details details={stockDetails} />
+          <Details details={stockData} />
         </div>
       </div>
       <div
