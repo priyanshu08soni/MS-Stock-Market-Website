@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import ThemeContext from "../context/ThemeContext";
-import { XIcon, SearchIcon } from "@heroicons/react/solid";
 import SearchResult from "./SearchResult";
 import { mockSearchResults } from "../sample-data/mock";
 const Overview = () => {

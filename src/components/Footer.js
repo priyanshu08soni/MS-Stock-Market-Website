@@ -5,9 +5,9 @@ const Footer = () => {
   return (
     <footer >
         <div className='w-full mainfooter flex text-white'>
-            <div className='footer-content1 w-25'>
-                <div className=" footer-logo flex align-content-center"><MdOutlineLeaderboard  /></div>
-                <div>
+            <div className='footer-content1 w-25 flex flex-wrap'>
+                <div className=" footer-logo flex align-content-center py-2"><MdOutlineLeaderboard  /></div>
+                <div className='my-2'>
                     <h1 className='footer-font-1'>MS</h1>
                     <h1 className='footer-font-1'>Learn from market's past</h1>
                 </div>
@@ -37,7 +37,7 @@ const Footer = () => {
             </div>
         </div>
         <hr />
-        <div className='text-white m-4'>&copy; Developers | All Right Reserved</div>
+        <div className='text-white mx-4 py-2'>&copy; Developers | All Right Reserved</div>
     </footer>
   )
 }

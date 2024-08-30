@@ -13,12 +13,12 @@ const SearchResult = ({ results, input }) => {
   useEffect(() => {
     let data = [];
     for (let i = 0; i < results.length; i++) {
-      if (results[i].Symbol.substr(0, input.length).toLowerCase() == input) {
+      if (results[i].Symbol.substr(0, input.length).toLowerCase() === input) {
         data.push({ name: results[i].Symbol });
       }
     }
     setNewData(data);
-  }, [input]);
+  }, [input,results]);
   return (
     <ul
       className={`border-2 w-full rounded-md h-64 overflow-y-scroll my-3 z-10 ${

@@ -379,13 +379,12 @@ header{
   border-radius: 20px;
 }
 .footer-logo{
-  font-size: 6vw;
+  font-size: 5vh;
 }
 .mainfooter{
   flex:wrap;
 }
 .footer-content1{
-  margin-right: 10vw;
   display: flex;
   padding-top: 20px;
   align-items: start;
@@ -482,5 +481,5 @@ header{
   background-color: #d5d3e8;
 }
 
-/* Date  input style */
+/* high , low, pclose, vwap, open */
 

@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../components/Header";
 import stockImage from "../assets/stock.webp";
 import stockvideo from "../assets/stock2.mp4";
-import { MdContentPasteSearch, MdWidthFull } from "react-icons/md";
+import { MdContentPasteSearch } from "react-icons/md";
 import { BiAnalyse } from "react-icons/bi";
 import { LiaOpencart } from "react-icons/lia";
 import climbingImage from "../assets/climbing.jpg";
