@@ -49,7 +49,6 @@ const Dashboard = () => {
 // No of trades
   const columns = [
     { name: 'DATE', selector: row => row.Date, sortable: true },
-    { name: 'SERIES', selector: row => row.Series, sortable: true },
     { name: 'OPEN', selector: row => row.Open, sortable: true },
     { name: 'HIGH', selector: row => row.High, sortable: true },
     { name: 'LOW', selector: row => row.Low, sortable: true },
@@ -57,8 +56,8 @@ const Dashboard = () => {
     { name: 'CLOSE', selector: row => row.Close, sortable: true },
     { name: 'VWAP', selector: row => row.Vwap, sortable: true },
     { name: 'VOLUME', selector: row => row.Volume, sortable: true },
-    { name: 'VALUE', selector: row => row.Turnover, sortable: true },
-    { name: 'NO. OF TRADES', selector: row => row.Trades, sortable: true },
+    { name: 'VALUE OF STOCKS', selector: row => row.Turnover, sortable: true, grow:2},
+    { name: 'TRADES', selector: row => row.Trades, sortable: true },
     // Add more columns as needed
   ];
   //Date Filter Data Extraction
@@ -141,7 +140,7 @@ const Dashboard = () => {
     setLow(tempLow);
     setTpxv(tempTpxv);
     setVolume(cumulativeVolume);
-  },[fromDate,toDate,stockSymbol,high,low,stockData])
+  },[fromDate,toDate,stockSymbol])
   useEffect(() => {
     for (let i = 0; i < allStocks.length; i++) {
       if (stockSymbol === allStocks[i].Symbol) {
@@ -172,15 +171,15 @@ const Dashboard = () => {
           <StockDetails details={stockDetails} />
         </div>
         <div className='flex justify-end gap-4'>
-            <input type="date" value={fromDate} onChange={e=>setFromDate(e.target.value)} max="2021-04-29" min="2020-05-04" className='my-2 py-1 px-3 rounded-md bg-blue-950 border-2 border-gray-600' />
-            <input type="date" value={toDate} onChange={e=>setToDate(e.target.value)} min="2020-05-05" max="2021-04-30"  className='my-2 py-1 px-3 rounded-md bg-blue-950 border-2 border-gray-600' />
+            <input type="date" value={fromDate} onChange={e=>setFromDate(e.target.value)} max="2021-04-29" min="2020-05-04" className='my-2 py-1 px-3 rounded-md bg-blue-950 border-2 border-gray-600 card' />
+            <input type="date" value={toDate} onChange={e=>setToDate(e.target.value)} min="2020-05-05" max="2021-04-30"  className='my-2 py-1 px-3 rounded-md bg-blue-950 border-2 border-gray-600 card' />
         </div>
         <div className='flex flex-wrap justify-between gap-3'>
             <div className={`h-full stock-value card rounded-md relative p-8 border-2 bg-gray-300 shadow-md my-3 ${darkMode?"bg-gray-900 border-gray-800":"bg-white border-blue-100"}`}
             style={{ color:"gray",overflow:"auto"}}
             >
                 <div className='font-extrabold text-xl pb-3' >P. CLOSE</div>
-                <div className='font-bold text-blue-300'>{stockData[0]? stockData[0]["Prev Close"]:""}</div>
+                <div className='font-bold text-blue-300'>{stockData[0]? stockData[0].pclose:""}</div>
             </div>
             <div className={`h-full stock-value card rounded-md relative p-8 border-2 bg-gray-300 shadow-md my-3 ${darkMode?"bg-gray-900 border-gray-800":"bg-white border-blue-100"}`}
             style={{ color:"gray",overflow:"auto"}}
@@ -221,33 +220,8 @@ const Dashboard = () => {
           theme="solarized"
           pagination
           />
-          </div>
-        <div className="mb-3">
-          <div class="container">
-            <div class="card">
-              <MdContentPasteSearch
-                className="cardImage"
-                style={{ color: "white", fontSize: "4vw", margin: "auto" }}
-              />
-              <h3>Past Stocks</h3>
-            </div>
-            <div class="card">
-              <BiAnalyse
-                className="cardImage"
-                style={{ color: "white", fontSize: "4vw", margin: "auto" }}
-              />
-              <h3>Analysing</h3>
-            </div>
-            <div class="card">
-              <LiaOpencart
-                className="cardImage"
-                style={{ color: "white", fontSize: "4vw", margin: "auto" }}
-              />
-              <h3>Buying Stocks</h3>
-            </div>
-          </div>
         </div>
-        <div className="pr-10 py-3" style={{ height: "50vh" }}>
+        <div className="pr-10 py-3 my-5 card" style={{ height: "50vh" }}>
           <Chart stockData={stockData} >Chart</Chart>
         </div>
         <div className="py-3">

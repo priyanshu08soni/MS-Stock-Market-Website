@@ -9,7 +9,6 @@ import {
   YAxis,
 } from "recharts";
 import { chartConfig } from "../sample-data/chart-config";
-import ChartFilter from "./ChartFilter";
 import ThemeContext from "../context/ThemeContext";
 import { fetchHistoricalData } from "../api/stock-api";
 import StockContext from "../context/StockContext";
@@ -56,15 +55,6 @@ const Chart = () => {
     <>
       
       <div className={`w-full h-full rounded-md py-5 relative ${darkMode?"bg-gray-900":"bg-blue"}`}>
-        <ul className="flex absolute top-2 left-20 z-20 text-xs md:text-sm xl:text-sm" >
-            {Object.keys(chartConfig).map((item)=>{
-                return <li key={item}>
-                    <ChartFilter text={item} active={filter===item} onClick={()=>{
-                        setFilter(item);
-                    }} />
-                </li>;
-            })}
-        </ul>
         <ResponsiveContainer>
           <AreaChart data={data}>
             <defs>
