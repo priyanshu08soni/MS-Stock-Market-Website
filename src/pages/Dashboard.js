@@ -5,9 +5,6 @@ import Details from "../components/Details";
 import Overview from "../components/Overview";
 import ThemeContext from "../context/ThemeContext";
 import StockContext from "../context/StockContext";
-import { MdContentPasteSearch } from "react-icons/md";
-import { BiAnalyse } from "react-icons/bi";
-import { LiaOpencart } from "react-icons/lia";
 import StockDetails from "../components/StockDetails";
 import Footer from "../components/Footer";
 import { mockSearchResults } from "../sample-data/mock";
@@ -33,20 +30,7 @@ const Dashboard = () => {
   //tpxv = cumulative value( TypicalPrice*volume)
   const [tpxv,setTpxv] = useState(0);
   const [volume,setVolume] =useState(0);
-//   Date
-// series
-// OPEN
-// HIGH
-// LOW
-// PREV. CLOSE
-// ltp
-// close
-// vwap
-// 52W H
-// 52W L
-// VOLUME
-// VALUE
-// No of trades
+
   const columns = [
     { name: 'DATE', selector: row => row.Date, sortable: true },
     { name: 'OPEN', selector: row => row.Open, sortable: true },
@@ -58,7 +42,6 @@ const Dashboard = () => {
     { name: 'VOLUME', selector: row => row.Volume, sortable: true },
     { name: 'VALUE OF STOCKS', selector: row => row.Turnover, sortable: true, grow:2},
     { name: 'TRADES', selector: row => row.Trades, sortable: true },
-    // Add more columns as needed
   ];
   //Date Filter Data Extraction
   const [stockData,setStockData] = useState([]);
@@ -167,9 +150,11 @@ const Dashboard = () => {
         <div className="py-3">
           <Overview />
         </div>
+        <h1 className="headlines">#company</h1>
         <div className="py-3">
           <StockDetails details={stockDetails} />
         </div>
+        <h1 className="headlines">#historicaldata</h1>
         <div className='flex justify-end gap-4'>
             <input type="date" value={fromDate} onChange={e=>setFromDate(e.target.value)} max="2021-04-29" min="2020-05-04" className='my-2 py-1 px-3 rounded-md bg-blue-950 border-2 border-gray-600 card' />
             <input type="date" value={toDate} onChange={e=>setToDate(e.target.value)} min="2020-05-05" max="2021-04-30"  className='my-2 py-1 px-3 rounded-md bg-blue-950 border-2 border-gray-600 card' />
@@ -221,9 +206,11 @@ const Dashboard = () => {
           pagination
           />
         </div>
+        <h1 className="headlines">#charts</h1>
         <div className="pr-10 py-3 my-5 card" style={{ height: "50vh" }}>
           <Chart stockData={stockData} >Chart</Chart>
         </div>
+        <h1 className="headlines">#details</h1>
         <div className="py-3">
           <Details details={stockData} />
         </div>

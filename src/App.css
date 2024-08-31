@@ -483,3 +483,8 @@ header{
 
 /* high , low, pclose, vwap, open */
 
+.headlines{
+  font-size: 8vw;
+  color: rgba(255, 255, 255, 0.119);
+  z-index: 30;
+}
