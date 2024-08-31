@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import Chart from "../components/Chart";
 import Header from "../components/Header";
-import Details from "../components/Details";
+import TradeInfo from "../components/TradeInfo";
 import Overview from "../components/Overview";
 import ThemeContext from "../context/ThemeContext";
 import StockContext from "../context/StockContext";
@@ -10,7 +10,7 @@ import Footer from "../components/Footer";
 import { mockSearchResults } from "../sample-data/mock";
 import { historicalData } from "../sample-data/mockHistoricalData";
 import DataTable ,{createTheme} from "react-data-table-component";
-
+import PriceInfo from "../components/PriceInfo"
 
 const Dashboard = () => {
   const { darkMode } = useContext(ThemeContext);
@@ -27,6 +27,7 @@ const Dashboard = () => {
   const [toDate,setToDate] = useState("2021-04-30");
   const [high,setHigh] = useState(-Infinity);
   const [low,setLow] = useState(Infinity);
+  const [turnover,setTurnover]=useState(0);
   //tpxv = cumulative value( TypicalPrice*volume)
   const [tpxv,setTpxv] = useState(0);
   const [volume,setVolume] =useState(0);
@@ -77,6 +78,7 @@ const Dashboard = () => {
   useEffect(()=>{
     let tempHigh = -Infinity;
     let tempLow = Infinity;
+    let tempTurnover = 0;
     let tempTpxv = 0;
     let cumulativeVolume =  0;
     let data = [];
@@ -107,6 +109,7 @@ const Dashboard = () => {
             if(low > historicalData[stockSymbol][i]?.Low){
               tempLow = Math.min(tempLow,historicalData[stockSymbol][i].Low);
             }
+            tempTurnover = tempTurnover+historicalData[stockSymbol][i].Turnover;
             tempTpxv = tempTpxv+(((historicalData[stockSymbol][i].High+historicalData[stockSymbol][i].Low+historicalData[stockSymbol][i].Close)/3)*historicalData[stockSymbol][i].Volume);
             cumulativeVolume = cumulativeVolume+historicalData[stockSymbol][i].Volume;
             data.push(historicalData[stockSymbol][i++]);
@@ -122,6 +125,7 @@ const Dashboard = () => {
     setHigh(tempHigh);
     setLow(tempLow);
     setTpxv(tempTpxv);
+    setTurnover(tempTurnover);
     setVolume(cumulativeVolume);
   },[fromDate,toDate,stockSymbol])
   useEffect(() => {
@@ -212,10 +216,10 @@ const Dashboard = () => {
         </div>
         <h1 className="headlines">#details</h1>
         <div className="py-3">
-          <Details details={stockData} />
+          <TradeInfo details={stockData} totalTradedValue={turnover} totalTradedShares={volume} />
         </div>
         <div className="py-3">
-          <Details details={stockData} />
+          <PriceInfo details={stockData} />
         </div>
       </div>
       <div
