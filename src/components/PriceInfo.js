@@ -19,7 +19,7 @@ const PriceInfo = ({details,totalTradedValue,totalTradedShares}) => {
     <div className={`w-full card rounded-md relative p-8 border-2 custom-scrollbar shadow-md ${darkMode?"bg-gray-900 border-gray-800":"bg-white border-neutral-200"} `}
     style={{color:"gray",overflow:"auto"}}
     >
-      <h1 className="text-2xl" style={{padding:"10px"}} >Price Information</h1>
+      <h1 className="text-2xl" style={{padding:"10px"}} >Price Information ( for above table )</h1>
       <ul className={`w-full h-full flex flex-col justify-between divide-y-1 text-sm ${darkMode?"divide-gray-800":null}`} >
         <li className="flex-1 flex justify-between items-center" 
           style={{margin:"4px" , padding:"10px",borderRadius:"5px"}}>
