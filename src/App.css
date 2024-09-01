@@ -6,7 +6,7 @@ body {
 :root{
     --color-747be2 : #737be2;
     --color-d3d3e8 : #2525be;
-    --color-c0c0ef : #4c4cd9;
+    --color-c0c0ef : #0b0b6f;
 }
 .stylehead{
   color: rgb(71, 138, 255);
@@ -57,10 +57,12 @@ body {
     color: white;
     font-size: 20px;
     text-decoration: none;
+    font-family: "Platypi", serif;
   }
   
   .nav li a:hover {
-    font-weight: bold;
+    color: gray;
+    text-decoration: underline;
   }
   
   .menu-bg {
@@ -111,7 +113,7 @@ body {
 button{
     background-color:var(--color-c0c0ef);
     padding-top: 5px;
-    border: 3px solid var(--color-c0c0ef);
+    border: 3px solid var(--color-d3d3e8);
     padding-bottom: 5px;
     color: rgb(255, 255, 255);
     font-weight: bolder;
@@ -484,7 +486,7 @@ header{
 /* high , low, pclose, vwap, open */
 
 .headlines{
-  font-size: 8vw;
+  font-size: 4vw;
   color: rgba(255, 255, 255, 0.119);
   z-index: 30;
 }

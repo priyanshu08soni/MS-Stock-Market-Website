@@ -3,18 +3,6 @@ import ThemeContext from "../context/ThemeContext";
 
 const TradeInfo = ({details,totalTradedValue,totalTradedShares}) => {
   const {darkMode}=useContext(ThemeContext);
-  const detailsList ={
-    name:"Name",
-    country:"Country",
-    currency:"Currency",
-    exchange:"Exchange",
-    ipo:"IPO Date",
-    marketCapitalization:"Market Capitalization",
-    finnhubIndustry:"Industry",
-  }
-  const convertMillionToBillion=(number)=>{
-    return (number/1000).toFixed(2);
-  }
   return (
     <div className={`w-full card rounded-md relative p-8 border-2 custom-scrollbar shadow-md ${darkMode?"bg-gray-900 border-gray-800":"bg-white border-neutral-200"} `}
     style={{color:"gray",overflow:"auto"}}

@@ -5,6 +5,8 @@ import ThemeContext from "./context/ThemeContext";
 import LandingPage from './pages/LandingPage';
 import Dashboard from "./pages/Dashboard";
 import StockContext from "./context/StockContext";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
 
 
 function App() {
@@ -32,6 +34,26 @@ function App() {
               <ThemeContext.Provider value={{ darkMode, setDarkMode }}>
                 <StockContext.Provider value={{ stockSymbol, setStockSymbol }}>
                   <Dashboard />
+                </StockContext.Provider>
+              </ThemeContext.Provider>
+            }
+          />
+          <Route
+            exact path="/about"
+            element={
+              <ThemeContext.Provider value={{ darkMode, setDarkMode }}>
+                <StockContext.Provider value={{ stockSymbol, setStockSymbol }}>
+                  <About />
+                </StockContext.Provider>
+              </ThemeContext.Provider>
+            }
+          />
+          <Route
+            exact path="/about"
+            element={
+              <ThemeContext.Provider value={{ darkMode, setDarkMode }}>
+                <StockContext.Provider value={{ stockSymbol, setStockSymbol }}>
+                  <Contact />
                 </StockContext.Provider>
               </ThemeContext.Provider>
             }

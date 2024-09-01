@@ -23,14 +23,7 @@ const Dashboard = () => {
     Series: "Series",
     Symbol: "Symbol",
   });
-  const [fromDate,setFromDate] = useState("2020-05-04");
-  const [toDate,setToDate] = useState("2021-04-30");
-  const [high,setHigh] = useState(-Infinity);
-  const [low,setLow] = useState(Infinity);
-  const [turnover,setTurnover]=useState(0);
-  //tpxv = cumulative value( TypicalPrice*volume)
-  const [tpxv,setTpxv] = useState(0);
-  const [volume,setVolume] =useState(0);
+  
 
   const columns = [
     { name: 'DATE', selector: row => row.Date, sortable: true },
@@ -75,6 +68,27 @@ const Dashboard = () => {
     },
     'dark',
   );
+  const [yearlyHigh,setYearlyHigh]= useState(-Infinity);
+  const [yearlyLow,setYearlyLow]= useState(Infinity);
+  useEffect(()=>{
+    let tempYearlyHigh = -Infinity;
+    let tempYearlyLow = Infinity;
+    for(let i = 0;i<historicalData[stockSymbol]?.length;i++){
+      tempYearlyHigh=Math.max(tempYearlyHigh,historicalData[stockSymbol][i]?.High);
+      tempYearlyLow=Math.min(tempYearlyLow,historicalData[stockSymbol][i]?.Low);
+    }
+    setYearlyHigh(tempYearlyHigh);
+    setYearlyLow(tempYearlyLow);
+  },[historicalData]);
+
+  const [fromDate,setFromDate] = useState("2020-05-04");
+  const [toDate,setToDate] = useState("2021-04-30");
+  const [high,setHigh] = useState(-Infinity);
+  const [low,setLow] = useState(Infinity);
+  const [turnover,setTurnover]=useState(0);
+  //tpxv = cumulative value( TypicalPrice*volume)
+  const [tpxv,setTpxv] = useState(0);
+  const [volume,setVolume] =useState(0);
   useEffect(()=>{
     let tempHigh = -Infinity;
     let tempLow = Infinity;
@@ -149,16 +163,16 @@ const Dashboard = () => {
         `}
       >
         <div>
-          <Header name={stockDetails?.name} />
+          <Header />
         </div>
         <div className="py-3">
           <Overview />
         </div>
-        <h1 className="headlines">#company</h1>
-        <div className="py-3">
+        <h1 className="headlines flex justify-end">#company</h1>
+        <div className="pb-5">
           <StockDetails details={stockDetails} />
         </div>
-        <h1 className="headlines">#historicaldata</h1>
+        <h1 className="headlines flex justify-end">#historicaldata</h1>
         <div className='flex justify-end gap-4'>
             <input type="date" value={fromDate} onChange={e=>setFromDate(e.target.value)} max="2021-04-29" min="2020-05-04" className='my-2 py-1 px-3 rounded-md bg-blue-950 border-2 border-gray-600 card' />
             <input type="date" value={toDate} onChange={e=>setToDate(e.target.value)} min="2020-05-05" max="2021-04-30"  className='my-2 py-1 px-3 rounded-md bg-blue-950 border-2 border-gray-600 card' />
@@ -201,7 +215,7 @@ const Dashboard = () => {
                 <div className='font-bold  text-blue-300'>{(tpxv && volume)?Math.round(tpxv/volume):""}</div>
             </div>
         </div>
-        <div className="card my-2 border-5">
+        <div className="card mt-3 mb-5 border-5">
         <DataTable
           title="Historical Data"
           columns={columns}
@@ -210,16 +224,16 @@ const Dashboard = () => {
           pagination
           />
         </div>
-        <h1 className="headlines">#charts</h1>
-        <div className="pr-10 py-3 my-5 card" style={{ height: "50vh" }}>
+        <h1 className="headlines flex justify-end">#charts</h1>
+        <div className="pr-10 py-3 mb-5 card" style={{ height: "50vh" }}>
           <Chart stockData={stockData} >Chart</Chart>
         </div>
-        <h1 className="headlines">#details</h1>
-        <div className="py-3">
+        <h1 className="headlines flex justify-end">#details</h1>
+        <div className="pb-3">
           <TradeInfo details={stockData} totalTradedValue={turnover} totalTradedShares={volume} />
         </div>
         <div className="py-3">
-          <PriceInfo details={stockData} />
+          <PriceInfo details={stockData} yearlyHigh={yearlyHigh} yearlyLow={yearlyLow} />
         </div>
       </div>
       <div
@@ -228,8 +242,8 @@ const Dashboard = () => {
           background: darkMode
             ? "radial-gradient(circle, rgba(34, 85, 195, 0.77) 0%, rgba(17,24,39,1) 71%, rgba(17,24,39,1) 100%)"
             : "radial-gradient(circle, rgba(34, 85, 195, 0.77) 0%, rgba(239,246,255,1) 71%, rgba(239,246,255,1) 100%)",
-          paddingLeft: "13vw",
-          paddingRight: "13vw",
+          paddingLeft: "2vw",
+          paddingRight: "2vw",
           paddingBottom: "2vw",
         }}
       >

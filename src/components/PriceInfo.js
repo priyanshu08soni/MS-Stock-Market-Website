@@ -1,20 +1,8 @@
 import React, { useContext } from "react";
 import ThemeContext from "../context/ThemeContext";
 
-const PriceInfo = ({details,totalTradedValue,totalTradedShares}) => {
+const PriceInfo = ({details,yearlyHigh,yearlyLow}) => {
   const {darkMode}=useContext(ThemeContext);
-  const detailsList ={
-    name:"Name",
-    country:"Country",
-    currency:"Currency",
-    exchange:"Exchange",
-    ipo:"IPO Date",
-    marketCapitalization:"Market Capitalization",
-    finnhubIndustry:"Industry",
-  }
-  const convertMillionToBillion=(number)=>{
-    return (number/1000).toFixed(2);
-  }
   return (
     <div className={`w-full card rounded-md relative p-8 border-2 custom-scrollbar shadow-md ${darkMode?"bg-gray-900 border-gray-800":"bg-white border-neutral-200"} `}
     style={{color:"gray",overflow:"auto"}}
@@ -23,33 +11,28 @@ const PriceInfo = ({details,totalTradedValue,totalTradedShares}) => {
       <ul className={`w-full h-full flex flex-col justify-between divide-y-1 text-sm ${darkMode?"divide-gray-800":null}`} >
         <li className="flex-1 flex justify-between items-center" 
           style={{margin:"4px" , padding:"10px",borderRadius:"5px"}}>
-          <span className="w-50" >Traded Volume ( Lakhs )</span>
-          <span className="w-50"  >{totalTradedShares}</span>
+          <span className="w-50" >52W High ( 04-05-2020 to 30-04-2021 )</span>
+          <span className="w-50"  >{yearlyHigh}</span>
         </li>
         <li className="flex-1 flex justify-between items-center" 
           style={{margin:"4px" , padding:"10px",borderRadius:"5px"}}>
-          <span className="w-50" >Traded Value ( ₹Cr. )</span>
-          <span className="w-50"  >{totalTradedValue}</span>
+          <span className="w-50" >52W Low ( 04-05-2020 to 30-04-2021 )</span>
+          <span className="w-50"  >{yearlyLow}</span>
         </li>
         <li className="flex-1 flex justify-between items-center" 
           style={{margin:"4px" , padding:"10px",borderRadius:"5px"}}>
-          <span className="w-50" >Outstanding shares(Last Day) </span>
-          <span className="w-50"  >{details[details?.length-1]?.Turnover/details[details?.length-1]?.Vwap}</span>
+          <span className="w-50" >Upper Band </span>
+          <span className="w-50"  >{(details[0]?.pclose*(1.1)).toFixed(2)}</span>
         </li>
         <li className="flex-1 flex justify-between items-center" 
           style={{margin:"4px" , padding:"10px",borderRadius:"5px"}}>
-          <span className="w-50" > Total Market CapI (Last Day) ( ₹Cr. )</span>
-          <span className="w-50"  >{(details[details?.length-1]?.Turnover/details[details?.length-1]?.Vwap)*details[details?.length-1]?.Close}</span>
+          <span className="w-50" >Lower Band</span>
+          <span className="w-50"  >{(details[0]?.pclose*(0.9)).toFixed(2)}</span>
         </li>
         <li className="flex-1 flex justify-between items-center" 
           style={{margin:"4px" , padding:"10px",borderRadius:"5px"}}>
-          <span className="w-50" >Impact Cost</span>
-          <span className="w-50"  >0.02</span>
-        </li>
-        <li className="flex-1 flex justify-between items-center" 
-          style={{margin:"4px" , padding:"10px",borderRadius:"5px"}}>
-          <span className="w-50" >% of Deliverable (Last Day)</span>
-          <span className="w-50"  >{((details[details?.length-1]?.percentageDeliverable)*100).toFixed(2)}%</span>
+          <span className="w-50" >Price Band</span>
+          <span className="w-50"  >No Band</span>
         </li>
       </ul>
     </div>
