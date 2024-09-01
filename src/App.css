@@ -369,8 +369,8 @@ header{
 /* footer */
 .footersection{
   background: radial-gradient(circle, rgba(34, 85, 195, 0.77) 0%, rgba(101,113,189,0) 71%, rgba(45,253,163,0) 100%);
-  padding-left: 13vw;
-  padding-right: 13vw;
+  padding-left: 2vw;
+  padding-right: 2vw;
   padding-bottom:2vw ;
 
 }
