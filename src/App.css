@@ -565,3 +565,14 @@ header{
             transform: translateX(-50%);
   }
 }
+
+/* Contact page */
+.contact-text{
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.contact-detail{
+  padding: 20px;
+  border-radius: 10px;
+}

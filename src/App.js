@@ -49,7 +49,7 @@ function App() {
             }
           />
           <Route
-            exact path="/about"
+            exact path="/contact"
             element={
               <ThemeContext.Provider value={{ darkMode, setDarkMode }}>
                 <StockContext.Provider value={{ stockSymbol, setStockSymbol }}>
