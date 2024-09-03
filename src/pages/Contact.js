@@ -18,7 +18,7 @@ const Contact = () => {
         <div>
           <h1 className="headlines mt-5 ms-4">#Contact</h1>
           <div className="flex flex-wrap flex-col contact">
-            <div className="gradient-cards ms-4 px-1 font-extrabold text-sm text-gray-800">
+            <div className="contact-cards ms-4 px-1 font-extrabold text-sm text-gray-800">
               <div className="contact-text">
                 <p className="text-sm">
                 Thank you for visiting our stock market analysis platform! We’re
