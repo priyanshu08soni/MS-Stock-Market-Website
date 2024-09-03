@@ -3,7 +3,10 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useContext } from "react";
 import ThemeContext from "../context/ThemeContext";
-
+import { MdLocalPhone } from "react-icons/md";
+import { IoIosMail } from "react-icons/io";
+import { SiWebmoney } from "react-icons/si";
+import { VscGithub } from "react-icons/vsc";
 const Contact = () => {
   const { darkMode } = useContext(ThemeContext);
   return (
@@ -15,7 +18,7 @@ const Contact = () => {
         <div>
           <h1 className="headlines mt-5 ms-4">#Contact</h1>
           <div className="flex flex-wrap flex-col contact">
-            <div className="gradient-cards ms-4 my-4 px-1 font-extrabold text-sm text-gray-800">
+            <div className="gradient-cards ms-4 px-1 font-extrabold text-sm text-gray-800">
               <div className="contact-text">
                 <p className="text-sm">
                 Thank you for visiting our stock market analysis platform! We’re
@@ -796,28 +799,38 @@ const Contact = () => {
               </div>
               ``
             </div>
-            <div className="contact-detail ms-4 mt-4 mb-5 font-bold text-lg text-gray-900">
-              <p>
-                <p>Email:</p>{" "}
-                <a href="mailto:priyanshus20k4@gmail.com">
-                  priyanshus20k4@gmail.com
+            <div className="contact-detail ms-4 mb-5 font-bold text-lg text-gray-800">
+              <p className="my-3">
+                <a href="mailto:priyanshus20k4@gmail.com" className="flex items-center gap-2">
+                  <IoIosMail className="bg-gray-400 rounded-2xl fs-2 p-1" />
+                  <p>
+                    priyanshus20k4@gmail.com
+                  </p>
                 </a>
               </p>
-              <p>
-                <p>Portfolio.:</p>{" "}
-                <a href="https://priyanshus20k4.wixstudio.io/my-portfolio">
-                  https://priyanshus20k4.wixstudio.io/my-portfolio
+              <p className="my-3">
+                <a href="https://priyanshus20k4.wixstudio.io/my-portfolio" className="flex items-center gap-2">
+                  <SiWebmoney className="bg-gray-400 rounded-2xl fs-2 p-1" />
+                  <p>
+                    https://priyanshus20k4.wixstudio.io/my-portfolio
+                  </p>
                 </a>
               </p>
-              <p>
-                <p>GitHub: </p>
-                <a href="https://github.com/priyanshu08soni/">
-                  https://github.com/priyanshu08soni
-                </a>{" "}
+              <p className="my-3">
+                <a href="https://github.com/priyanshu08soni/" className="flex items-center gap-2">
+                  <VscGithub className="bg-gray-400 rounded-2xl fs-2 p-1" />
+                  <p>
+                    https://github.com/priyanshu08soni
+                  </p>
+                </a>
               </p>
-              <p>
-                <p>Phone: </p>
-                <a href="tel:+918000643228">+91 8000643228</a>
+              <p className="my-3">
+                <a href="tel:+918000643228" className="flex items-center gap-2">
+                  <MdLocalPhone className="bg-gray-400 rounded-2xl fs-2 p-1" />
+                  <p>
+                    +91 8000643228
+                  </p>
+                </a>
               </p>
             </div>
           </div>
