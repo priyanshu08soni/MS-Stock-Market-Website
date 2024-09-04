@@ -14,7 +14,7 @@ const Overview = () => {
     <>
       <div
         className={`w-full h-full card d-flex flex-col justify-center rounded-md relative border-2 bg-gray-300 shadow-md pb-5 pt-3 custom-scrollbar ${
-          darkMode ? "bg-gray-900 border-gray-800" : "bg-white border-blue-100"
+          darkMode ? "bg-gray-900 border-gray-800" : "bg-blue-100 border-blue-100"
         }`}
         style={{ color: "gray", overflow: "auto" }}
       >

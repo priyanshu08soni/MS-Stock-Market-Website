@@ -19,13 +19,17 @@ body {
   #menu-bar {
     width: 4vh;
     height: 40px;
-    margin-left: 20px;
+    margin-left: 60px;
     cursor: pointer;
+    @media screen and (max-width:991px) {
+      margin-top: 10px;
+      margin-left: 20px;
+    }
   }
   
   .bar {
     height: 0.7vw;
-    width: 100%;
+    width: 3vw;
     display: block;
     border-radius: 5px;
     transition: 0.3s ease;
@@ -142,6 +146,17 @@ button:hover{
 }
 
 /* landing page */
+.landingImage{
+  @media screen and (max-width:991px){
+    display: none;
+  }
+}
+.stockImage{
+  width: 30vw;
+  @media screen and (max-width:991px){
+    width: 70vw;
+  }
+}
 
 header{
   padding-top: 3vw;
@@ -166,10 +181,18 @@ header{
     font-size: 4vw;
     font-family: "Playfair Display", serif;
     font-weight: bolder;
+    @media screen and (max-width:991px) {
+      font-size: 7vw;
+      padding-top: 60px;
+    }
 }
 .headline2{
     font-size: 3.5vw;
     font-family: "Playfair Display", serif;
+    @media screen and (max-width:991px) {
+      font-size: 6vw;
+      padding-bottom: 50px;
+    }
 }
 .headline3{
   display: flex;
@@ -179,6 +202,9 @@ header{
   font-family: "Playfair Display", serif;
   margin-top: 10vw;
   color: rgb(130, 130, 130);
+  @media screen and (max-width:991px) {
+    font-size: 6vw;
+  }
 }
 .headline4{
   display: flex;
@@ -188,6 +214,9 @@ header{
   font-family: "Playfair Display", serif;
   margin-top: 5vw;
   color: rgb(130, 130, 130);
+  @media screen and (max-width:991px) {
+    font-size: 6vw;
+  }
 }
 .mainheadline{
   padding-top: 2vw;
@@ -209,7 +238,7 @@ header{
 /* cards for getting started */
 
 .container-getting-started {
-  width: 1200px !important;
+  width: 1500px !important;
   padding: 0 !important;
   margin-right: auto;
   margin-left: auto;
@@ -250,7 +279,7 @@ header{
 }
 
 .card-getting-started {
-  max-width: 550px;
+  max-width: 700px;
   border: 0;
   width: 100%;
   margin-inline: auto;
@@ -313,7 +342,6 @@ header{
 }
 
 .card {
-  background-color: transparent;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: rgba(115, 59, 193, 0.5) 0px 7px 29px 0px;
@@ -486,8 +514,10 @@ header{
 
 .headlines{
   font-size: 4vw;
-  color: rgba(255, 255, 255, 0.119);
   z-index: 30;
+  @media screen and (max-width:991px) {
+    font-size: 7vw;
+  }
 }
 
 /* About Page */
@@ -521,9 +551,8 @@ header{
 
 .timeline-content {
   padding: 20px;
-  background: #1f1f1f;
-  -webkit-box-shadow: 5px 5px 10px #1a1a1a, -5px -5px 10px #242424;
-          box-shadow: 5px 5px 10px #1a1a1a, -5px -5px 10px #242424;
+  background: black;
+  box-shadow: rgba(115, 59, 193, 0.5) 0px 7px 29px 0px;
   border-radius: 5px;
   color: white;
   padding: 1.75rem;
@@ -572,15 +601,16 @@ header{
   flex-wrap: wrap;
 }
 .contact-detail{
-  padding: 20px;
+  padding-left: 20px;
   border-radius: 10px;
 }
 .contact-cards {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 32px;
-  padding: 30px;
   @media screen and (max-width: 991px) {
-    grid-template-columns: 1fr;
+    grid-template-columns: 300px;
+    gap:0px;
   }
 }
+/* rgba(25, 68, 142, 0.523) */

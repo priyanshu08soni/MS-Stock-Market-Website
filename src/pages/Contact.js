@@ -10,13 +10,13 @@ import { VscGithub } from "react-icons/vsc";
 const Contact = () => {
   const { darkMode } = useContext(ThemeContext);
   return (
-    <>
+    <div className={`${darkMode?"bg-black":"bg-blue-300"}`}>
       <div>
         <div>
           <Header />
         </div>
         <div>
-          <h1 className="headlines mt-5 ms-4">#Contact</h1>
+          <h1 className={`headlines mt-5 ms-4`} style={{color:darkMode?" rgba(255, 255, 255, 0.119)":"rgba(0, 0, 0, 0.3)"}} >#Contact</h1>
           <div className="flex flex-wrap flex-col contact">
             <div className="contact-cards ms-4 px-1 font-extrabold text-sm text-gray-800">
               <div className="contact-text">
@@ -797,22 +797,21 @@ const Contact = () => {
                   </g>
                 </svg>
               </div>
-              ``
             </div>
             <div className="contact-detail ms-4 mb-5 font-bold text-lg text-gray-800">
               <p className="my-3">
                 <a href="mailto:priyanshus20k4@gmail.com" className="flex items-center gap-2">
                   <IoIosMail className="bg-gray-400 rounded-2xl fs-2 p-1" />
                   <p>
-                    priyanshus20k4@gmail.com
+                    Gmail.com
                   </p>
                 </a>
               </p>
               <p className="my-3">
                 <a href="https://priyanshus20k4.wixstudio.io/my-portfolio" className="flex items-center gap-2">
                   <SiWebmoney className="bg-gray-400 rounded-2xl fs-2 p-1" />
-                  <p>
-                    https://priyanshus20k4.wixstudio.io/my-portfolio
+                  <p className="flex flex-wrap">
+                    My-portfolio
                   </p>
                 </a>
               </p>
@@ -820,7 +819,7 @@ const Contact = () => {
                 <a href="https://github.com/priyanshu08soni/" className="flex items-center gap-2">
                   <VscGithub className="bg-gray-400 rounded-2xl fs-2 p-1" />
                   <p>
-                    https://github.com/priyanshu08soni
+                    GitHub.com
                   </p>
                 </a>
               </p>
@@ -837,11 +836,18 @@ const Contact = () => {
         </div>
       </div>
       <section className="footersection">
-        <div className="footer">
+        <div className="footer" style={{
+              border: darkMode
+              ? "3px solid rgba(255, 255, 255, 0.247)"
+              : "3px solid rgba(34, 85, 195, 0.247)",
+              background:darkMode
+              ?"rgba(255, 255, 255, 0.133)"
+              :"rgba(25, 68, 142, 0.523)",
+          }}>
           <Footer />
-        </div>
+        </div> 
       </section>
-    </>
+    </div>
   );
 };
 

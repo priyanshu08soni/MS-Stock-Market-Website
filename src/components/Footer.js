@@ -36,7 +36,6 @@ const Footer = () => {
                 </div>
             </div>
         </div>
-        <hr />
         <div className='text-white mx-4 py-2'>&copy; Developers | All Right Reserved</div>
     </footer>
   )

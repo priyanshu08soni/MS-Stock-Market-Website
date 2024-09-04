@@ -8,13 +8,13 @@ const About = () => {
   const { darkMode } = useContext(ThemeContext);
 
   return (
-    <>
+    <div className={`${darkMode?"bg-black":"bg-red-300"}`}>
       <div>
         <div>
           <Header />
         </div>
         <div>
-          <h1 className="headlines mt-5 ms-4">#About</h1>
+          <h1 className="headlines mt-5 ms-4" style={{color:darkMode?" rgba(255, 255, 255, 0.119)":"rgba(0, 0, 0, 0.3)"}}>#About</h1>
           <div>
             <div className="about-text ms-4 my-4 font-extrabold text-xl text-gray-600">
               Welcome to our stock market analysis platform, where we harness
@@ -23,7 +23,7 @@ const About = () => {
               insights into the Indian stock market, specifically focusing on
               the Nifty-50 index.
             </div>
-            <h1 className="headlines mt-5 ms-4">#WhatWeOffer :</h1>
+            <h1 className="headlines mt-5 ms-4" style={{color:darkMode?" rgba(255, 255, 255, 0.119)":"rgba(0, 0, 0, 0.3)"}}>#WhatWeOffer :</h1>
             <section class="design-section mt-2">
               <div class="timeline">
                 <div class="timeline-component timeline-content">
@@ -105,11 +105,15 @@ const About = () => {
         </div>
       </div>
       <section className="footersection">
-        <div className="footer">
+        <div className="footer" style={{
+            border: darkMode
+              ? "3px solid rgba(255, 255, 255, 0.247)"
+              : "3px solid rgba(34, 85, 195, 0.247)",
+          }} >
           <Footer />
         </div>
       </section>
-    </>
+    </div>
   );
 };
 

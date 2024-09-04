@@ -29,7 +29,7 @@ const Chart = ({stockData}) => {
   return (
     <>
       
-      <div className={`w-full h-full rounded-md py-5 relative ${darkMode?"bg-gray-900":"bg-blue"}`}>
+      <div className={`w-full h-full rounded-md py-5 relative ${darkMode?"bg-gray-900":"bg-blue-100"}`}>
         <ResponsiveContainer>
           <AreaChart data={data}>
             <defs>

@@ -7,9 +7,13 @@ import { BiAnalyse } from "react-icons/bi";
 import { LiaOpencart } from "react-icons/lia";
 import climbingImage from "../assets/climbing.jpg";
 import Footer from "../components/Footer";
+import { useContext } from "react";
+import ThemeContext from "../context/ThemeContext";
 const LandingPage = () => {
+  const { darkMode } = useContext(ThemeContext);
+
   return (
-    <>
+    <div className={`${darkMode?"bg-black":"bg-gray-400"}`}>
       <section className="landingpage relative">
         <Header />
         <div className="landingImage">
@@ -28,7 +32,7 @@ const LandingPage = () => {
           <h2 className="headline2">
             Learning From <b className="stylehead">Market's Past</b>
           </h2>
-          <img src={stockImage} style={{width:"30vw",paddingTop:"2vw"}} alt="" />
+          <img src={stockImage} className="stockImage" style={{paddingTop:"2vw"}} alt="" />
         </div>
       </section>
       <section className="getting-started">
@@ -74,29 +78,80 @@ const LandingPage = () => {
       </section>
       <section>
         <div className="headline4">Giving A Through &nbsp; <b className="stylehead">Analysis</b></div>
-        <div class="container">
-          <div class="card">
-            <MdContentPasteSearch
-              className="cardImage"
-              style={{ color: "white", fontSize: "4vw", margin: "auto" }}
-            />
-            <h3>Past Stocks</h3>
-          </div>
-          <div class="card">
-            <BiAnalyse
-              className="cardImage"
-              style={{ color: "white", fontSize: "4vw", margin: "auto" }}
-            />
-            <h3>Analysing</h3>
-          </div>
-          <div class="card">
-            <LiaOpencart
-              className="cardImage"
-              style={{ color: "white", fontSize: "4vw", margin: "auto" }}
-            />
-            <h3>Buying Stocks</h3>
-          </div>
-        </div>
+        <section class="design-section mt-2">
+              <div class="timeline">
+                <div class="timeline-component timeline-content">
+                  <h3 className="font-extrabold text-xl pb-3 text-gray-600" >Interactive Charts and Graphs</h3>
+                  <p>
+                    Visualize stock performance trends over time with our
+                    interactive charts. We provide clear and detailed graphs
+                    that help you track price movements, volume changes, and
+                    market fluctuations, allowing for easy comparison and
+                    analysis.
+                  </p>
+                </div>
+                <div class="timeline-middle">
+                  <div class="timeline-circle"></div>
+                </div>
+                <div class="timeline-empty"></div>
+
+                <div class="timeline-empty"></div>
+                <div class="timeline-middle">
+                  <div class="timeline-circle"></div>
+                </div>
+                <div class="timeline-component timeline-content">
+                  <h3 className="font-extrabold text-xl pb-3 text-gray-600" >Data-Driven Insights</h3>
+                  <p>
+                    Our platform uses a rich dataset to calculate key financial
+                    metrics, such as moving averages, RSI, and more. These
+                    metrics are presented in easy-to-read tables, giving you a
+                    deeper understanding of stock behavior and helping you
+                    identify potential investment opportunities.
+                  </p>
+                </div>
+
+                <div class=" timeline-component timeline-content">
+                  <h3 className="font-extrabold text-xl pb-3 text-gray-600" >Predictive Analytics</h3>
+                  <p>
+                    By analyzing historical data, our algorithms can predict
+                    future market trends, providing you with a forward-looking
+                    perspective on stock performance. This helps you stay ahead
+                    of the market and make proactive investment decisions.
+                  </p>
+                </div>
+
+                <div class="timeline-middle">
+                  <div class="timeline-circle"></div>
+                </div>
+                <div class="timeline-empty"></div>
+
+                <div class="timeline-empty"></div>
+                <div class="timeline-middle">
+                  <div class="timeline-circle"></div>
+                </div>
+
+                <div class="timeline-component timeline-content">
+                  <h3 className="font-extrabold text-xl pb-3 text-gray-600" >Comprehensive Tables</h3>
+                  <p>
+                    Our detailed tables include essential data such as open,
+                    high, low, close prices, and trading volumes, offering you a
+                    complete picture of each stock's daily performance.
+                  </p>
+                </div>
+                <div class=" timeline-component timeline-content">
+                  <h3 className="font-extrabold text-xl pb-3 text-gray-600" >User-Friendly Interface</h3>
+                  <p>
+                    Our platform is designed with simplicity in mind, making it
+                    easy for both novice and experienced investors to navigate
+                    and utilize the data.
+                  </p>
+                </div>
+                <div class="timeline-middle">
+                  <div class="timeline-circle"></div>
+                </div>
+                <div class="timeline-empty"></div>
+              </div>
+        </section>
       </section>
       <section className="climbing">
         <div className="flex justify-center align-items-center">
@@ -120,11 +175,15 @@ const LandingPage = () => {
         </div>
       </section>
       <section className="footersection">
-        <div className="footer">
+        <div className="footer" style={{
+            border: darkMode
+              ? "3px solid rgba(255, 255, 255, 0.247)"
+              : "3px solid rgba(34, 85, 195, 0.247)",
+          }}>
           <Footer/>
         </div>
       </section>
-    </>
+    </div>
   );
 };
 

@@ -4,7 +4,7 @@ import ThemeContext from "../context/ThemeContext";
 const PriceInfo = ({details,yearlyHigh,yearlyLow}) => {
   const {darkMode}=useContext(ThemeContext);
   return (
-    <div className={`w-full card rounded-md relative p-8 border-2 custom-scrollbar shadow-md ${darkMode?"bg-gray-900 border-gray-800":"bg-white border-neutral-200"} `}
+    <div className={`w-full card rounded-md relative p-8 border-2 custom-scrollbar shadow-md ${darkMode?"bg-gray-900 border-gray-800":"bg-blue-100 border-neutral-200"} `}
     style={{color:"gray",overflow:"auto"}}
     >
       <h1 className="text-2xl" style={{padding:"10px"}} >Price Information ( for above table )</h1>
