@@ -798,7 +798,7 @@ const Contact = () => {
                 </svg>
               </div>
             </div>
-            <div className="contact-detail ms-4 mb-5 font-bold text-lg text-gray-800">
+            <div className="contact-detail ms-4 mb-3 font-bold text-lg text-gray-800">
               <p className="my-3">
                 <a href="mailto:priyanshus20k4@gmail.com" className="flex items-center gap-2">
                   <IoIosMail className="bg-gray-400 rounded-2xl fs-2 p-1" />
