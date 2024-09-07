@@ -7,10 +7,11 @@ import { MdLocalPhone } from "react-icons/md";
 import { IoIosMail } from "react-icons/io";
 import { SiWebmoney } from "react-icons/si";
 import { VscGithub } from "react-icons/vsc";
-const Contact = () => {
-  const { darkMode } = useContext(ThemeContext);
+const Documentation = () => {
+    const { darkMode } = useContext(ThemeContext);
+
   return (
-    <div className={` ${darkMode?"bg-black":"bg-blue-300"}`}>
+    <div className={`${darkMode?"bg-black":"bg-blue-300"}`}>
       <div>
         <div>
           <Header />
@@ -42,7 +43,7 @@ const Contact = () => {
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 790 563"
                   fill="none"
-                  height={"35vh"}
+                  height={"50vh"}
                 >
                   <g id="Image">
                     <g id="g14">
@@ -848,7 +849,7 @@ const Contact = () => {
         </div> 
       </section>
     </div>
-  );
-};
+  )
+}
 
-export default Contact;
+export default Documentation
