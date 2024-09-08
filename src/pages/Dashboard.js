@@ -244,6 +244,9 @@ const Dashboard = () => {
       <div
         className={`footersection row-span-2 col-span-2 xl:col-span-3 ${stockSymbol=="FB"?"fixed-bottom bg-black":""}`}
         style={{
+          background: darkMode
+            ? "radial-gradient(circle, rgba(34, 85, 195, 0.77) 0%, rgba(0,0,0,1) 100%, rgba(17,24,39,1) 100%)"
+            : "radial-gradient(circle, rgba(34, 85, 195, 0.77) 0%, rgba(220,252,232,1) 71%, rgba(239,246,255,1) 100%)",
           paddingLeft: "2vw",
           paddingRight: "2vw",
           paddingBottom: "2vw",
