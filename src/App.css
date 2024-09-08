@@ -83,7 +83,7 @@ body {
     z-index: 40;
     width: 0;
     height: 0;
-    background: radial-gradient(circle, #2f287f3f, #0b03643f);
+    background: radial-gradient(circle, #2f287fbe, #0b0364e1);
     border-radius: 40%;
     transition: 0.3s ease;
   }
