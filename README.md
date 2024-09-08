@@ -78,11 +78,6 @@ $ npm run build // this will compile the react code using webpack and generate a
     "webpack-dev-middleware": "^7.2.1",
     "yup": "^1.3.3"
    
-# Screenshots of this project
-
-User visit public , Home page , SignUp Page, Login Page
-- [User visit public and Home page](https://imgur.com/a/website-r90AEM8)
-
 ## Standard
 
 [![JavaScript Style Guide](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)
