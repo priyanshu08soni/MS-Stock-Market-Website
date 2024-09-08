@@ -1,6 +1,6 @@
 <<<<<<< HEAD
 <h1 align="center">
-🌐 Stock Market Website 
+🌐 MS - Stock Market Website 
 </h1>
 <p align="center">
 React
