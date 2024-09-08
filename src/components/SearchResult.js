@@ -13,7 +13,7 @@ const SearchResult = ({ results, input }) => {
   useEffect(() => {
     let data = [];
     for (let i = 0; i < results.length; i++) {
-      if (results[i].Symbol.substr(0, input.length).toLowerCase() === input) {
+      if (results[i].Symbol.substr(0, input.length).toLowerCase() === input.toLowerCase()) {
         data.push({ name: results[i].Symbol });
       }
     }

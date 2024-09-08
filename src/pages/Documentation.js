@@ -44,14 +44,21 @@ const Documentation = () => {
           <div className="about-text mx-5 my-4 font-extrabold text-xl text-gray-600">
             <p>Stocks that are involved :</p>
             <div className={`card mt-3 mb-5 border-5 ${darkMode?"bg-gray-900":"bg-blue-100"}`}>
-            <DataTable
-              columns={columns}
-              data={allStocks}
-              theme="solarized"
-              pagination
-            />
-        </div>
+              <DataTable
+                columns={columns}
+                data={allStocks}
+                theme="solarized"
+                pagination
+              />
+            </div>
           </div>
+          <div className="about-text mx-5 my-4 font-extrabold text-xl text-gray-600">
+            <p>How to start with Dashboard:</p>
+            <div>
+              
+            </div>
+          </div>
+          <div></div>
         </div>
       </div>
       <section className="footersection">
