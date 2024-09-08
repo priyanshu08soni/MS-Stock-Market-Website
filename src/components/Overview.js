@@ -34,10 +34,8 @@ const Overview = () => {
               onChange={(e) => {
                 setInput(e.target.value);
               }}
-              onKeyDown={(event) => {
-                if (event.key === "Enter") {
+              onKeyDown={() => {
                   updateBestMatches();
-                }
               }}
       
             />

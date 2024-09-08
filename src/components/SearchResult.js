@@ -4,7 +4,7 @@ import StockContext from "../context/StockContext";
 
 const SearchResult = ({ results, input }) => {
   const { darkMode } = useContext(ThemeContext);
-  const { setStockSymbol } = useContext(StockContext);
+  const {stockSymbol, setStockSymbol } = useContext(StockContext);
   const [newData, setNewData] = useState([]);
 
   //To update the mapping data we have 
@@ -21,7 +21,7 @@ const SearchResult = ({ results, input }) => {
   }, [input,results]);
   return (
     <ul
-      className={`border-2 w-full rounded-md h-64 overflow-y-scroll my-3 z-10 ${
+      className={`border-2 w-full rounded-md h-32 overflow-y-scroll my-3 z-10 ${
         darkMode
           ? "bg-gray-900 border-gray-800 custom-scrollbar custom-scrollbar-dark"
           : "bg-white border-neutral-200 custom-scrollbar"
