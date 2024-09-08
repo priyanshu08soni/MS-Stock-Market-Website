@@ -20,9 +20,8 @@ const SearchResult = ({ results, input }) => {
     setNewData(data);
   }, [input,results]);
   return (
-   <>
-    {(newData!=[]) && (<ul
-      className={`border-2 w-full rounded-md h-32 overflow-y-scroll my-3 z-10 ${
+    <ul
+      className={`border-2 w-full rounded-md overflow-y-scroll my-3 z-10 ${
         darkMode
           ? "bg-gray-900 border-gray-800 custom-scrollbar custom-scrollbar-dark"
           : "bg-white border-neutral-200 custom-scrollbar"
@@ -46,8 +45,7 @@ const SearchResult = ({ results, input }) => {
             
           );
         })}
-    </ul>)}
-   </>
+    </ul>
   );
 };
 

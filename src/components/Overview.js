@@ -28,7 +28,7 @@ const Overview = () => {
               id="search"
               value={input}
               className={`w-full form__field px-4 focus:outline-none rounded-md shadow-md ${
-                darkMode ? "bg-gray-700" : null
+                darkMode ? "bg-gray-700" : "text-black"
               }`}
               placeholder="Search stock ... and press enter"
               onChange={(e) => {
