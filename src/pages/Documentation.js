@@ -8,6 +8,7 @@ import DataTable from "react-data-table-component";
 import { mockSearchResults } from "../sample-data/mock";
 import { useState } from "react";
 import { useEffect } from "react";
+import  s1  from "../assets/s1.png"
 const Documentation = () => {
   const { darkMode } = useContext(ThemeContext);
   const allStocks = mockSearchResults.result;
@@ -52,10 +53,12 @@ const Documentation = () => {
               />
             </div>
           </div>
+          <h1 className={`headlines mt-5 ms-4`} style={{color:darkMode?" rgba(255, 255, 255, 0.119)":"rgba(0, 0, 0, 0.3)"}} >#GettingStarted(Dashboard)</h1>
           <div className="about-text mx-5 my-4 font-extrabold text-xl text-gray-600">
-            <p>How to start with Dashboard:</p>
+            <p className="text-gray-400 my-2" >Entering the stock symbol :</p>
             <div>
-              
+              <p>Search for your stock(using stock symbol) that you want to find. Then hit Enter :</p>
+              <img src={s1} alt="" />
             </div>
           </div>
           <div></div>
