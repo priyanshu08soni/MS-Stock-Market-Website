@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 import { useContext } from "react";
 import ThemeContext from "../context/ThemeContext";
 import { FcInfo } from "react-icons/fc";
-import DataTable from "react-data-table-component";
+import DataTable ,{createTheme} from "react-data-table-component";
 import { mockSearchResults } from "../sample-data/mock";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -36,6 +36,35 @@ const Documentation = () => {
     },
     { name: "Series", selector: (row) => row.Series, sortable: true },
   ];
+  createTheme(
+    'solarized',
+    {
+      text: {
+        primary: '#268bd2',
+        secondary: '#2aa198',
+      },
+      background: {
+        default: darkMode ? "bg-gray-900" : " bg-blue-100",
+      },
+      context: {
+        background: '#cb4b16',
+        text: '#FFFFFF',
+      },
+      divider: {
+        default: '#073642',
+      },
+      button: {
+        default: '#2aa198',
+        hover: 'rgba(0,0,0,.48)',
+        focus: 'rgba(255,255,255,.12)',
+        disabled: 'rgba(255, 255, 255, .34)',
+      },
+      sortFocus: {
+        default: '#2aa198',
+      },
+    },
+    'dark',
+  );
   return (
     <div className={`${darkMode ? "bg-black" : "bg-blue-300"}`}>
       <div>
