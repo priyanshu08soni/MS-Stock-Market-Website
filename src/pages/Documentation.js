@@ -61,7 +61,7 @@ const Documentation = () => {
             focusing on the Nifty-50 index.
           </div>
           <div className={`mx-5 px-2 py-1 w-50`}>
-            <div className={`bg-blue-300 d-flex items-center gap-2 px-2 py-1`}>
+            <div className={`d-flex items-center gap-2 px-2 py-1 ${darkMode?"bg-blue-300":"bg-red-300"}`}>
               <FcInfo /> Note :{" "}
             </div>
             <div className={`bg-blue-200 px-2 py-1`}>
@@ -148,7 +148,7 @@ const Documentation = () => {
           </div>
           <div className={`mx-16 px-2 py-1 w-50`}>
             <div
-              className={`bg-blue-300 d-flex items-center gap-2 px-2 py-1`}
+              className={`d-flex items-center gap-2 px-2 py-1 ${darkMode?"bg-blue-300":"bg-red-300"}`}
             >
               <FcInfo /> Note :{" "}
             </div>
