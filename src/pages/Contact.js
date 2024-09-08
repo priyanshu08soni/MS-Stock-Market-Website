@@ -823,14 +823,6 @@ const Contact = () => {
                   </p>
                 </a>
               </p>
-              <p className="my-3">
-                <a href="tel:+918000643228" className="flex items-center gap-2">
-                  <MdLocalPhone className="bg-gray-400 rounded-2xl fs-2 p-1" />
-                  <p>
-                    +91 8000643228
-                  </p>
-                </a>
-              </p>
             </div>
           </div>
         </div>
