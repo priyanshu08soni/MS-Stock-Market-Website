@@ -162,7 +162,7 @@ const Dashboard = () => {
         ${darkMode ? " text-gray-300" : " "} 
         `}
       >
-        <div>
+        <div style={{marginLeft:"-50px"}}>
           <Header />
         </div>
         <div className={`py-3`}>
