@@ -203,7 +203,7 @@ const Dashboard = () => {
             style={{ color:"gray",overflow:"auto"}}
             >
                 <div className='font-extrabold text-xl pb-3' >LOW</div>
-                <div className='font-bold  text-blue-300'>{low<0?low:""}</div>
+                <div className='font-bold  text-blue-300'>{low!=Infinity?low:""}</div>
             </div>
             <div className={`h-full stock-value card rounded-md relative p-8 border-2 bg-blue-100 shadow-md my-3 ${darkMode?"bg-gray-900 border-gray-800":"bg-blue-100 border-blue-100"}`}
             style={{ color:"gray",overflow:"auto"}}
