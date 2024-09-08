@@ -43,7 +43,7 @@ const Overview = () => {
               <h1>Search</h1>
             </label>
             {input && bestMatches.length > 0 ? (
-              <SearchResult results={bestMatches} input={input} />
+              <SearchResult results={bestMatches} setInput={setInput} input={input} />
             ) : null}
           </div>
         </div>
