@@ -178,37 +178,37 @@ const Dashboard = () => {
             <input type="date" value={toDate} onChange={e=>setToDate(e.target.value)} min="2020-05-05" max="2021-04-30"  className={`my-2 py-1 px-3 rounded-md border-2 border-gray-600 card ${darkMode?"bg-gray-900":"bg-blue-100"}`} />
         </div>
         <div className='flex flex-wrap justify-between gap-3'>
-            <div className={`h-full stock-value card rounded-md relative p-8 border-2 bg-gray-300 shadow-md my-3 ${darkMode?"bg-gray-900 border-gray-800":"bg-blue-100 border-blue-100"}`}
+            <div className={`h-full stock-value card rounded-md relative p-8 border-2 bg-blue-100 shadow-md my-3 ${darkMode?"bg-gray-900 border-gray-800":"bg-blue-100 border-blue-100"}`}
             style={{ color:"gray",overflow:"auto"}}
             >
                 <div className='font-extrabold text-xl pb-3' >P. CLOSE</div>
                 <div className='font-bold text-blue-300'>{stockData[0]? stockData[0].pclose:""}</div>
             </div>
-            <div className={`h-full stock-value card rounded-md relative p-8 border-2 bg-gray-300 shadow-md my-3 ${darkMode?"bg-gray-900 border-gray-800":"bg-blue-100 border-blue-100"}`}
+            <div className={`h-full stock-value card rounded-md relative p-8 border-2 bg-blue-100 shadow-md my-3 ${darkMode?"bg-gray-900 border-gray-800":"bg-blue-100 border-blue-100"}`}
             style={{ color:"gray",overflow:"auto"}}
             >
                 <div className='font-extrabold text-xl pb-3' >OPEN</div>
                 <div className='font-bold  text-blue-300'>{stockData[0]?stockData[0].Open:""}</div>
             </div>
-            <div className={`h-full stock-value card rounded-md relative p-8 border-2 bg-gray-300 shadow-md my-3 ${darkMode?"bg-gray-900 border-gray-800":"bg-blue-100 border-blue-100"}`}
+            <div className={`h-full stock-value card rounded-md relative p-8 border-2 bg-blue-100 shadow-md my-3 ${darkMode?"bg-gray-900 border-gray-800":"bg-blue-100 border-blue-100"}`}
             style={{ color:"gray",overflow:"auto"}}
             >
                 <div className='font-extrabold text-xl pb-3' >HIGH</div>
                 <div className='font-bold text-blue-300'>{high?high:""}</div>
             </div>
-            <div className={`h-full stock-value card rounded-md relative p-8 border-2 bg-gray-300 shadow-md my-3 ${darkMode?"bg-gray-900 border-gray-800":"bg-blue-100 border-blue-100"}`}
+            <div className={`h-full stock-value card rounded-md relative p-8 border-2 bg-blue-100 shadow-md my-3 ${darkMode?"bg-gray-900 border-gray-800":"bg-blue-100 border-blue-100"}`}
             style={{ color:"gray",overflow:"auto"}}
             >
                 <div className='font-extrabold text-xl pb-3' >LOW</div>
                 <div className='font-bold  text-blue-300'>{low?low:""}</div>
             </div>
-            <div className={`h-full stock-value card rounded-md relative p-8 border-2 bg-gray-300 shadow-md my-3 ${darkMode?"bg-gray-900 border-gray-800":"bg-blue-100 border-blue-100"}`}
+            <div className={`h-full stock-value card rounded-md relative p-8 border-2 bg-blue-100 shadow-md my-3 ${darkMode?"bg-gray-900 border-gray-800":"bg-blue-100 border-blue-100"}`}
             style={{ color:"gray",overflow:"auto"}}
             >
                 <div className='font-extrabold text-xl pb-3' >CLOSE*</div>
                 <div className='font-bold  text-blue-300'>{stockData[stockData.length-1]?stockData[stockData.length-1].Close:""}</div>
             </div>
-            <div className={`h-full stock-value card rounded-md relative p-8 border-2 bg-gray-300 shadow-md my-3 ${darkMode?"bg-gray-900 border-gray-800":"bg-blue-100 border-blue-100"}`}
+            <div className={`h-full stock-value card rounded-md relative p-8 border-2 bg-blue-100 shadow-md my-3 ${darkMode?"bg-gray-900 border-gray-800":"bg-blue-100 border-blue-100"}`}
             style={{ color:"gray",overflow:"auto"}}
             >
                 <div className='font-extrabold text-xl pb-3' >VWAP</div>
