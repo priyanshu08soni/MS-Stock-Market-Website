@@ -5,7 +5,7 @@ import ThemeIcon from "./ThemeIcon";
 import ThemeContext from "../context/ThemeContext";
 
 const Header = () => {
-  const { darkMode } = useContext(ThemeContext);
+  const { setDarkMode,darkMode } = useContext(ThemeContext);
 
   function menuOnClick() {
     document.getElementById("menu-bar")?.classList.toggle("change");
@@ -29,8 +29,8 @@ const Header = () => {
                     Home
                   </NavLink>
                 </li>
-                <li>
-                  <NavLink className="navlink" to="/dashboard">
+                <li onClick={()=>setDarkMode(true)}>
+                  <NavLink className="navlink"  to="/dashboard">
                     Dashboard
                   </NavLink>
                 </li>
