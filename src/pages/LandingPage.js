@@ -13,7 +13,7 @@ const LandingPage = () => {
   const { darkMode } = useContext(ThemeContext);
 
   return (
-    <div className={`${darkMode?"bg-black":"bg-gray-400"}`}>
+    <div className={`${darkMode?"bg-black":"bg-gray-800"}`}>
       <section className="landingpage relative">
         <Header />
         <div className="landingImage">
