@@ -89,6 +89,7 @@ const Dashboard = () => {
   //tpxv = cumulative value( TypicalPrice*volume)
   const [tpxv,setTpxv] = useState(0);
   const [volume,setVolume] =useState(0);
+  console.log(stockSymbol);
   useEffect(()=>{
     let tempHigh = -Infinity;
     let tempLow = Infinity;
@@ -156,7 +157,7 @@ const Dashboard = () => {
     }
   }, [stockSymbol,allStocks]);
   return (
-    <div className={`${darkMode?"bg-gray-900":"bg-green-100"}`}>
+    <div className={`${darkMode?"bg-black":"bg-green-100"}`}>
       <div
         className={`custom-scrollbar auto-rows-fr gap-10 px-10 pb-10 font-roboto 
         ${darkMode ? " text-gray-300" : " "} 
@@ -168,7 +169,9 @@ const Dashboard = () => {
         <div className={`py-3`}>
           <Overview />
         </div>
-        <h1 className="headlines flex justify-end" style={{color:darkMode?" rgba(255, 255, 255, 0.119)":"rgba(0, 0, 0, 0.3)"}}>#company</h1>
+        {(stockSymbol!="FB") && (
+          <>
+          <h1 className="headlines flex justify-end" style={{color:darkMode?" rgba(255, 255, 255, 0.119)":"rgba(0, 0, 0, 0.3)"}}>#company</h1>
         <div className="pb-5">
           <StockDetails details={stockDetails} />
         </div>
@@ -194,13 +197,13 @@ const Dashboard = () => {
             style={{ color:"gray",overflow:"auto"}}
             >
                 <div className='font-extrabold text-xl pb-3' >HIGH</div>
-                <div className='font-bold text-blue-300'>{high?high:""}</div>
+                <div className='font-bold text-blue-300'>{high>0?high:""}</div>
             </div>
             <div className={`h-full stock-value card rounded-md relative p-8 border-2 bg-blue-100 shadow-md my-3 ${darkMode?"bg-gray-900 border-gray-800":"bg-blue-100 border-blue-100"}`}
             style={{ color:"gray",overflow:"auto"}}
             >
                 <div className='font-extrabold text-xl pb-3' >LOW</div>
-                <div className='font-bold  text-blue-300'>{low?low:""}</div>
+                <div className='font-bold  text-blue-300'>{low<0?low:""}</div>
             </div>
             <div className={`h-full stock-value card rounded-md relative p-8 border-2 bg-blue-100 shadow-md my-3 ${darkMode?"bg-gray-900 border-gray-800":"bg-blue-100 border-blue-100"}`}
             style={{ color:"gray",overflow:"auto"}}
@@ -235,13 +238,12 @@ const Dashboard = () => {
         <div className="py-3">
           <PriceInfo details={stockData} yearlyHigh={yearlyHigh} yearlyLow={yearlyLow} />
         </div>
+          </>
+        )}
       </div>
       <div
-        className={`footersection row-span-2 col-span-2 xl:col-span-3`}
+        className={`footersection row-span-2 col-span-2 xl:col-span-3 ${stockSymbol=="FB"?"fixed-bottom bg-black":""}`}
         style={{
-          background: darkMode
-            ? "radial-gradient(circle, rgba(34, 85, 195, 0.77) 0%, rgba(17,24,39,1) 71%, rgba(17,24,39,1) 100%)"
-            : "radial-gradient(circle, rgba(34, 85, 195, 0.77) 0%, rgba(239,246,255,1) 71%, rgba(239,246,255,1) 100%)",
           paddingLeft: "2vw",
           paddingRight: "2vw",
           paddingBottom: "2vw",

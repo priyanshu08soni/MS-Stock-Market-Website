@@ -12,12 +12,12 @@ const PriceInfo = ({details,yearlyHigh,yearlyLow}) => {
         <li className="flex-1 flex justify-between items-center" 
           style={{margin:"4px" , padding:"10px",borderRadius:"5px"}}>
           <span className="w-50" >52W High ( 04-05-2020 to 30-04-2021 )</span>
-          <span className="w-50"  >{yearlyHigh}</span>
+          <span className="w-50"  >{yearlyHigh>0?yearlyHigh:""}</span>
         </li>
         <li className="flex-1 flex justify-between items-center" 
           style={{margin:"4px" , padding:"10px",borderRadius:"5px"}}>
           <span className="w-50" >52W Low ( 04-05-2020 to 30-04-2021 )</span>
-          <span className="w-50"  >{yearlyLow}</span>
+          <span className="w-50"  >{yearlyLow<0?yearlyLow:""}</span>
         </li>
         <li className="flex-1 flex justify-between items-center" 
           style={{margin:"4px" , padding:"10px",borderRadius:"5px"}}>
