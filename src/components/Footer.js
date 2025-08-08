@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { MdOutlineLeaderboard } from "react-icons/md";
+import ThemeContext from '../context/ThemeContext';
 
 const Footer = () => {
+    const { darkMode } = useContext(ThemeContext);
   return (
     <footer >
-        <div className='w-full mainfooter flex text-white'>
+        <div className={`w-full mainfooter flex ${darkMode?"text-white":"text-gray-600"}`}>
             <div className='footer-content1 w-25 flex flex-wrap'>
                 <div className=" footer-logo flex align-content-center py-2"><MdOutlineLeaderboard  /></div>
                 <div className='my-2'>
@@ -12,11 +14,11 @@ const Footer = () => {
                     <h1 className='footer-font-1'>Learn from market's past</h1>
                 </div>
             </div>
-            <div className='footer-content2 flex flex-wrap w-75'>
+            <div className={`footer-content2 flex flex-wrap w-75 ${darkMode?"text-white":"text-gray-600}"}`}>
                 <div className='flex flex-wrap' >
                     <div className='px-5 py-2'>
                         <h1 className='footer-font-1'>COMPANY</h1>
-                        <h2 className='footer-font-2'>Privacy</h2>
+                        <h2 className='footer-font-2'>Privacy Policy</h2>
                         <h2 className='footer-font-2'>Terms of Use</h2>
                     </div>
                     <div className='px-5 py-2'>
@@ -36,7 +38,7 @@ const Footer = () => {
                 </div>
             </div>
         </div>
-        <div className='text-white mx-4 py-2'>&copy; Developers | All Right Reserved</div>
+        <div className={`mx-4 py-2 ${darkMode?"text-white":"text-gray-600"}`}>&copy; Developers | All Right Reserved</div>
     </footer>
   )
 }

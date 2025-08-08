@@ -24,9 +24,9 @@ const About = () => {
               the Nifty-50 index.
             </div>
             <h1 className="headlines mt-5 ms-4" style={{color:darkMode?" rgba(255, 255, 255, 0.119)":"rgba(0, 0, 0, 0.3)"}}>#WhatWeOffer :</h1>
-            <section class="design-section mt-2">
-              <div class="timeline">
-                <div class="timeline-component timeline-content">
+            <section className="design-section mt-2">
+              <div className="timeline">
+                <div className={`timeline-component timeline-content ${darkMode?"bg-gray-900":"bg-pink-500"}`}>
                   <h3 className="font-extrabold text-xl pb-3 text-gray-600" >Interactive Charts and Graphs</h3>
                   <p>
                     Visualize stock performance trends over time with our
@@ -36,16 +36,16 @@ const About = () => {
                     analysis.
                   </p>
                 </div>
-                <div class="timeline-middle">
-                  <div class="timeline-circle"></div>
+                <div className="timeline-middle">
+                  <div className="timeline-circle"></div>
                 </div>
-                <div class="timeline-empty"></div>
+                <div className="timeline-empty"></div>
 
-                <div class="timeline-empty"></div>
-                <div class="timeline-middle">
-                  <div class="timeline-circle"></div>
+                <div className="timeline-empty"></div>
+                <div className="timeline-middle">
+                  <div className="timeline-circle"></div>
                 </div>
-                <div class="timeline-component timeline-content">
+                <div className={`timeline-component timeline-content ${darkMode?"bg-gray-900":"bg-pink-500"}`}>
                   <h3 className="font-extrabold text-xl pb-3 text-gray-600" >Data-Driven Insights</h3>
                   <p>
                     Our platform uses a rich dataset to calculate key financial
@@ -56,7 +56,7 @@ const About = () => {
                   </p>
                 </div>
 
-                <div class=" timeline-component timeline-content">
+                <div className={`timeline-component timeline-content ${darkMode?"bg-gray-900":"bg-pink-500"}`}>
                   <h3 className="font-extrabold text-xl pb-3 text-gray-600" >Predictive Analytics</h3>
                   <p>
                     By analyzing historical data, our algorithms can predict
@@ -66,17 +66,17 @@ const About = () => {
                   </p>
                 </div>
 
-                <div class="timeline-middle">
-                  <div class="timeline-circle"></div>
+                <div className="timeline-middle">
+                  <div className="timeline-circle"></div>
                 </div>
-                <div class="timeline-empty"></div>
+                <div className="timeline-empty"></div>
 
-                <div class="timeline-empty"></div>
-                <div class="timeline-middle">
-                  <div class="timeline-circle"></div>
+                <div className="timeline-empty"></div>
+                <div className="timeline-middle">
+                  <div className="timeline-circle"></div>
                 </div>
 
-                <div class="timeline-component timeline-content">
+                <div className={`timeline-component timeline-content ${darkMode?"bg-gray-900":"bg-pink-500"}`}>
                   <h3 className="font-extrabold text-xl pb-3 text-gray-600" >Comprehensive Tables</h3>
                   <p>
                     Our detailed tables include essential data such as open,
@@ -84,7 +84,7 @@ const About = () => {
                     complete picture of each stock's daily performance.
                   </p>
                 </div>
-                <div class=" timeline-component timeline-content">
+                <div className={`timeline-component timeline-content ${darkMode?"bg-gray-900":"bg-pink-500"}`}>
                   <h3 className="font-extrabold text-xl pb-3 text-gray-600" >User-Friendly Interface</h3>
                   <p>
                     Our platform is designed with simplicity in mind, making it
@@ -92,10 +92,10 @@ const About = () => {
                     and utilize the data.
                   </p>
                 </div>
-                <div class="timeline-middle">
-                  <div class="timeline-circle"></div>
+                <div className="timeline-middle">
+                  <div className="timeline-circle"></div>
                 </div>
-                <div class="timeline-empty"></div>
+                <div className="timeline-empty"></div>
               </div>
             </section>
             <div className="about-text ms-4 my-4 px-1 font-extrabold text-xl text-gray-600">

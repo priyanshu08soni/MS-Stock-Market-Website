@@ -180,17 +180,21 @@ header{
 .headline1{
     font-size: 4vw;
     font-family: "Playfair Display", serif;
+    color: rgb(229,231,235);
     font-weight: bolder;
     @media screen and (max-width:991px) {
       font-size: 7vw;
+      color: rgb(31,41,55);
       padding-top: 60px;
     }
 }
 .headline2{
     font-size: 3.5vw;
     font-family: "Playfair Display", serif;
+    color: rgb(229,231,235);
     @media screen and (max-width:991px) {
       font-size: 6vw;
+      color: rgb(31,41,55);
       padding-bottom: 50px;
     }
 }
@@ -238,23 +242,19 @@ header{
 /* cards for getting started */
 
 .container-getting-started {
-  width: 1500px !important;
+  width: 90% !important;
   padding: 0 !important;
   margin-right: auto;
   margin-left: auto;
 
   @media screen and (min-width: 992px) and (max-width: 1439px) {
-    max-width: 1279px !important;
     padding: 0 !important;
     margin: 0 80px !important;
-    width: auto !important;
   }
 
   @media screen and (max-width: 991px) {
-    max-width: 959px !important;
     margin: 0 16px !important;
     padding: 0 !important;
-    width: auto !important;
   }
 }
 
@@ -262,7 +262,7 @@ header{
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 32px;
-  padding: 30px;
+  padding-top: 30px;
   @media screen and (max-width: 991px) {
     grid-template-columns: 1fr;
   }
@@ -282,12 +282,15 @@ header{
   max-width: 700px;
   border: 0;
   width: 100%;
+ 
   margin-inline: auto;
-  border-radius: 45px;
-  box-shadow: rgba(115, 59, 193, 0.5) 0px 7px 29px 0px;
+  border-radius: 10px;
+  box-shadow: rgba(115, 59, 193, 0.2) 0px 7px 29px 0px;
 }
 .card-getting-started:hover {
   transform: translateY(-5px);
+
+  box-shadow: rgba(115, 59, 193, 0.8) 0px 7px 29px 0px;
 }
 
 .container-card {
@@ -373,7 +376,7 @@ header{
 }
 .tradeview h1{
   font-size: 8vw;
-  color: rgba(255, 255, 255, 0.119);
+  color: rgb(67, 67, 67);
   z-index: 30;
 }
 /* climbing */
@@ -382,7 +385,7 @@ header{
   color: white;
 }
 .climbing img{
-  border-radius: 50px;
+  border-radius: 10px;
 }
 .climbing h1{
   font-size: 3vw;
@@ -426,13 +429,11 @@ header{
 }
 
 .footer-font-1{
-  color: gray;
   font-size: 16px;
   font-family: "Playfair Display", serif;
 }
 .footer-font-2{
   font-size: 14px;
-  color: rgb(203, 203, 203);
   font-family: "Rubik", sans-serif;
 }
 
@@ -451,7 +452,7 @@ header{
   border-bottom: 2px solid gray;
   outline: 0;
   font-size: 1.3rem;
-  color: white;
+  color: gray;
   padding: 7px 0;
   background: transparent;
   transition: border-color 0.2s;
@@ -541,9 +542,8 @@ header{
 }
 
 .timeline {
-  width: 100%;
   height: auto;
-  max-width: 1500px;
+  width: 90%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -551,8 +551,8 @@ header{
 
 .timeline-content {
   padding: 20px;
-  background: black;
-  box-shadow: rgba(115, 59, 193, 0.5) 0px 7px 29px 0px;
+
+  box-shadow: rgba(115, 59, 193, 0.3) 0px 7px 29px 0px;
   border-radius: 5px;
   color: white;
   padding: 1.75rem;

@@ -2,9 +2,6 @@ import React from "react";
 import Header from "../components/Header";
 import stockImage from "../assets/stock.webp";
 import stockvideo from "../assets/stock2.mp4";
-import { MdContentPasteSearch } from "react-icons/md";
-import { BiAnalyse } from "react-icons/bi";
-import { LiaOpencart } from "react-icons/lia";
 import climbingImage from "../assets/climbing.jpg";
 import Footer from "../components/Footer";
 import { useContext } from "react";
@@ -13,7 +10,7 @@ const LandingPage = () => {
   const { darkMode } = useContext(ThemeContext);
 
   return (
-    <div className={`${darkMode?"bg-black":"bg-gray-800"}`}>
+    <div className={`${darkMode?"bg-gray-950":"bg-gray-200"}`}>
       <section className="landingpage relative">
         <Header />
         <div className="landingImage">
@@ -26,7 +23,7 @@ const LandingPage = () => {
           ></video>
         </div>
       </section>
-      <section className="z-10 flex text-white relative">
+      <section className={`z-10 flex relative `}>
         <div className="z-20 mainheadline w-full">
           <h1 className="headline1">Market Screeners :</h1>
           <h2 className="headline2">
@@ -37,37 +34,37 @@ const LandingPage = () => {
       </section>
       <section className="getting-started">
         <div className="headline3">Getting &nbsp; <b className="stylehead">Started</b></div>
-        <div>
-          <div class="container-getting-started">
-            <div class="gradient-cards">
-              <div class="card-getting-started">
-                <div class="container-card bg-green-box">
-                  <p class="card-title">Search For Past Stocks</p>
-                  <p class="card-description">
+        <div className="flex items-center justify-content-center">
+          <div className="container-getting-started">
+            <div className="gradient-cards">
+              <div className={`card-getting-started ${darkMode?"bg-gray-900":"bg-gray-600"}`}>
+                <div className="container-card bg-green-box">
+                  <p className="card-title">Search For Past Stocks</p>
+                  <p className="card-description">
                     List of different stocks is attached to the documentation. 
                   </p>
                 </div>
               </div>
-              <div class="card-getting-started">
-                <div class="container-card bg-white-box">
-                  <p class="card-title">Analyse Stocks By Charts</p>
-                  <p class="card-description">
+              <div className={`card-getting-started ${darkMode?"bg-gray-900":"bg-gray-600"}`}>
+                <div className="container-card bg-white-box">
+                  <p className="card-title">Analyse Stocks By Charts</p>
+                  <p className="card-description">
                     Efficiently analyse your dream stocks.
                   </p>
                 </div>
               </div>
-              <div class="card-getting-started">
-                <div class="container-card bg-yellow-box">
-                  <p class="card-title">Buy Stocks With Efficient Way</p>
-                  <p class="card-description">
+              <div className={`card-getting-started ${darkMode?"bg-gray-900":"bg-gray-600"}`}>
+                <div className="container-card bg-yellow-box">
+                  <p className="card-title">Buy Stocks With Efficient Way</p>
+                  <p className="card-description">
                     Buy stocks that will help you grow in future.
                   </p>
                 </div>
               </div>
-              <div class="card-getting-started">
-                <div class="container-card bg-blue-box">
-                  <p class="card-title">Stay Updated With Current Market</p>
-                  <p class="card-description">
+              <div className={`card-getting-started ${darkMode?"bg-gray-900":"bg-gray-600"}`}>
+                <div className="container-card bg-blue-box">
+                  <p className="card-title">Stay Updated With Current Market</p>
+                  <p className="card-description">
                     See live stock details to stay updated with current market.
                   </p>
                 </div>
@@ -78,11 +75,11 @@ const LandingPage = () => {
       </section>
       <section>
         <div className="headline4">Giving A Through &nbsp; <b className="stylehead">Analysis</b></div>
-        <section class="design-section mt-2">
-              <div class="timeline">
-                <div class="timeline-component timeline-content">
-                  <h3 className="font-extrabold text-xl pb-3 text-gray-600" >Interactive Charts and Graphs</h3>
-                  <p>
+        <section className="design-section mt-2">
+              <div className="timeline">
+                <div className={`timeline-component timeline-content ${darkMode?"bg-gray-900":"bg-gray-600"}`}>
+                  <h3 className="card-title" >Interactive Charts and Graphs</h3>
+                  <p className="card-description">
                     Visualize stock performance trends over time with our
                     interactive charts. We provide clear and detailed graphs
                     that help you track price movements, volume changes, and
@@ -90,18 +87,18 @@ const LandingPage = () => {
                     analysis.
                   </p>
                 </div>
-                <div class="timeline-middle">
-                  <div class="timeline-circle"></div>
+                <div className="timeline-middle">
+                  <div className="timeline-circle"></div>
                 </div>
-                <div class="timeline-empty"></div>
+                <div className="timeline-empty"></div>
 
-                <div class="timeline-empty"></div>
-                <div class="timeline-middle">
-                  <div class="timeline-circle"></div>
+                <div className="timeline-empty"></div>
+                <div className="timeline-middle">
+                  <div className="timeline-circle"></div>
                 </div>
-                <div class="timeline-component timeline-content">
-                  <h3 className="font-extrabold text-xl pb-3 text-gray-600" >Data-Driven Insights</h3>
-                  <p>
+                <div className={`timeline-component timeline-content ${darkMode?"bg-gray-900":"bg-gray-600"}`}>
+                  <h3 className="card-title" >Data-Driven Insights</h3>
+                  <p className="card-description">
                     Our platform uses a rich dataset to calculate key financial
                     metrics, such as moving averages, RSI, and more. These
                     metrics are presented in easy-to-read tables, giving you a
@@ -110,9 +107,9 @@ const LandingPage = () => {
                   </p>
                 </div>
 
-                <div class=" timeline-component timeline-content">
-                  <h3 className="font-extrabold text-xl pb-3 text-gray-600" >Predictive Analytics</h3>
-                  <p>
+                <div className={`timeline-component timeline-content ${darkMode?"bg-gray-900":"bg-gray-600"}`}>
+                  <h3 className="card-title" >Predictive Analytics</h3>
+                  <p className="card-description">
                     By analyzing historical data, our algorithms can predict
                     future market trends, providing you with a forward-looking
                     perspective on stock performance. This helps you stay ahead
@@ -120,36 +117,36 @@ const LandingPage = () => {
                   </p>
                 </div>
 
-                <div class="timeline-middle">
-                  <div class="timeline-circle"></div>
+                <div className="timeline-middle">
+                  <div className="timeline-circle"></div>
                 </div>
-                <div class="timeline-empty"></div>
+                <div className="timeline-empty"></div>
 
-                <div class="timeline-empty"></div>
-                <div class="timeline-middle">
-                  <div class="timeline-circle"></div>
+                <div className="timeline-empty"></div>
+                <div className="timeline-middle">
+                  <div className="timeline-circle"></div>
                 </div>
 
-                <div class="timeline-component timeline-content">
-                  <h3 className="font-extrabold text-xl pb-3 text-gray-600" >Comprehensive Tables</h3>
-                  <p>
+                <div className={`timeline-component timeline-content ${darkMode?"bg-gray-900":"bg-gray-600"}`}>
+                  <h3 className="card-title" >Comprehensive Tables</h3>
+                  <p className="card-description">
                     Our detailed tables include essential data such as open,
                     high, low, close prices, and trading volumes, offering you a
                     complete picture of each stock's daily performance.
                   </p>
                 </div>
-                <div class=" timeline-component timeline-content">
-                  <h3 className="font-extrabold text-xl pb-3 text-gray-600" >User-Friendly Interface</h3>
-                  <p>
+                <div className={`timeline-component timeline-content ${darkMode?"bg-gray-900":"bg-gray-600"}`}>
+                  <h3 className="card-title" >User-Friendly Interface</h3>
+                  <p className="card-description">
                     Our platform is designed with simplicity in mind, making it
                     easy for both novice and experienced investors to navigate
                     and utilize the data.
                   </p>
                 </div>
-                <div class="timeline-middle">
-                  <div class="timeline-circle"></div>
+                <div className="timeline-middle">
+                  <div className="timeline-circle"></div>
                 </div>
-                <div class="timeline-empty"></div>
+                <div className="timeline-empty"></div>
               </div>
         </section>
       </section>
