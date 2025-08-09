@@ -13,8 +13,7 @@ const Overview = () => {
   return (
     <>
       <div
-        className={`w-full h-full card d-flex flex-col justify-center rounded-md relative border-2 shadow-md pb-5 pt-3 custom-scrollbar ${
-          darkMode ? "bg-gray-900 border-gray-800" : "bg-blue-100 border-blue-100"
+        className={`w-full h-full card d-flex flex-col justify-center rounded-md relative pb-5 pt-5  custom-scrollbar bg-transparent
         }`}
         style={{ color: "gray", overflow: "auto" }}
       >
@@ -27,7 +26,7 @@ const Overview = () => {
               type="text"
               id="search"
               value={input}
-              className={`w-full form__field px-4 focus:outline-none rounded-md shadow-md ${
+              className={`w-full form__field focus:outline-none shadow-md ${
                 darkMode ? "bg-gray-700" : "text-black"
               }`}
               placeholder="Search stock ... and press enter"

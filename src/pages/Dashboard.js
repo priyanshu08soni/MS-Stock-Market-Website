@@ -9,8 +9,8 @@ import StockDetails from "../components/StockDetails";
 import Footer from "../components/Footer";
 import { mockSearchResults } from "../sample-data/mock";
 import { historicalData } from "../sample-data/mockHistoricalData";
-import DataTable ,{createTheme} from "react-data-table-component";
-import PriceInfo from "../components/PriceInfo"
+import DataTable, { createTheme } from "react-data-table-component";
+import PriceInfo from "../components/PriceInfo";
 
 const Dashboard = () => {
   const { darkMode } = useContext(ThemeContext);
@@ -23,114 +23,135 @@ const Dashboard = () => {
     Series: "Series",
     Symbol: "Symbol",
   });
-  
 
   const columns = [
-    { name: 'DATE', selector: row => row.Date, sortable: true },
-    { name: 'OPEN', selector: row => row.Open, sortable: true },
-    { name: 'HIGH', selector: row => row.High, sortable: true },
-    { name: 'LOW', selector: row => row.Low, sortable: true },
-    { name: 'PREV. CLOSE', selector: row => row.pclose, sortable: true },
-    { name: 'CLOSE', selector: row => row.Close, sortable: true },
-    { name: 'VWAP', selector: row => row.Vwap, sortable: true },
-    { name: 'VOLUME', selector: row => row.Volume, sortable: true },
-    { name: 'VALUE OF STOCKS', selector: row => row.Turnover, sortable: true, grow:2},
-    { name: 'TRADES', selector: row => row.Trades, sortable: true },
+    { name: "DATE", selector: (row) => row.Date, sortable: true },
+    { name: "OPEN", selector: (row) => row.Open, sortable: true },
+    { name: "HIGH", selector: (row) => row.High, sortable: true },
+    { name: "LOW", selector: (row) => row.Low, sortable: true },
+    { name: "PREV. CLOSE", selector: (row) => row.pclose, sortable: true },
+    { name: "CLOSE", selector: (row) => row.Close, sortable: true },
+    { name: "VWAP", selector: (row) => row.Vwap, sortable: true },
+    { name: "VOLUME", selector: (row) => row.Volume, sortable: true },
+    {
+      name: "VALUE OF STOCKS",
+      selector: (row) => row.Turnover,
+      sortable: true,
+      grow: 2,
+    },
+    { name: "TRADES", selector: (row) => row.Trades, sortable: true },
   ];
   //Date Filter Data Extraction
-  const [stockData,setStockData] = useState([]);
+  const [stockData, setStockData] = useState([]);
   createTheme(
-    'solarized',
+    "solarized",
     {
       text: {
-        primary: '#268bd2',
-        secondary: '#2aa198',
+        primary: "#268bd2",
+        secondary: "#2aa198",
       },
       background: {
         default: darkMode ? "bg-gray-900" : " bg-blue-100",
       },
       context: {
-        background: '#cb4b16',
-        text: '#FFFFFF',
+        background: "#cb4b16",
+        text: "#FFFFFF",
       },
       divider: {
-        default: '#073642',
+        default: "#073642",
       },
       button: {
-        default: '#2aa198',
-        hover: 'rgba(0,0,0,.48)',
-        focus: 'rgba(255,255,255,.12)',
-        disabled: 'rgba(255, 255, 255, .34)',
+        default: "#2aa198",
+        hover: "rgba(0,0,0,.48)",
+        focus: "rgba(255,255,255,.12)",
+        disabled: "rgba(255, 255, 255, .34)",
       },
       sortFocus: {
-        default: '#2aa198',
+        default: "#2aa198",
       },
     },
-    'dark',
+    "dark"
   );
-  const [yearlyHigh,setYearlyHigh]= useState(-Infinity);
-  const [yearlyLow,setYearlyLow]= useState(Infinity);
-  useEffect(()=>{
+  const [yearlyHigh, setYearlyHigh] = useState(-Infinity);
+  const [yearlyLow, setYearlyLow] = useState(Infinity);
+  useEffect(() => {
     let tempYearlyHigh = -Infinity;
     let tempYearlyLow = Infinity;
-    for(let i = 0;i<historicalData[stockSymbol]?.length;i++){
-      tempYearlyHigh=Math.max(tempYearlyHigh,historicalData[stockSymbol][i]?.High);
-      tempYearlyLow=Math.min(tempYearlyLow,historicalData[stockSymbol][i]?.Low);
+    for (let i = 0; i < historicalData[stockSymbol]?.length; i++) {
+      tempYearlyHigh = Math.max(
+        tempYearlyHigh,
+        historicalData[stockSymbol][i]?.High
+      );
+      tempYearlyLow = Math.min(
+        tempYearlyLow,
+        historicalData[stockSymbol][i]?.Low
+      );
     }
     setYearlyHigh(tempYearlyHigh);
     setYearlyLow(tempYearlyLow);
-  },[historicalData]);
+  }, [historicalData]);
 
-  const [fromDate,setFromDate] = useState("2020-05-04");
-  const [toDate,setToDate] = useState("2021-04-30");
-  const [high,setHigh] = useState(-Infinity);
-  const [low,setLow] = useState(Infinity);
-  const [turnover,setTurnover]=useState(0);
+  const [fromDate, setFromDate] = useState("2020-05-04");
+  const [toDate, setToDate] = useState("2021-04-30");
+  const [high, setHigh] = useState(-Infinity);
+  const [low, setLow] = useState(Infinity);
+  const [turnover, setTurnover] = useState(0);
   //tpxv = cumulative value( TypicalPrice*volume)
-  const [tpxv,setTpxv] = useState(0);
-  const [volume,setVolume] =useState(0);
+  const [tpxv, setTpxv] = useState(0);
+  const [volume, setVolume] = useState(0);
   console.log(stockSymbol);
-  useEffect(()=>{
+  useEffect(() => {
     let tempHigh = -Infinity;
     let tempLow = Infinity;
     let tempTurnover = 0;
     let tempTpxv = 0;
-    let cumulativeVolume =  0;
+    let cumulativeVolume = 0;
     let data = [];
     let currentDate = new Date(fromDate);
     let endDate = new Date(toDate);
-    
-    for(let i = 0;i<historicalData[stockSymbol]?.length;i++){
-      let date =new Date(historicalData[stockSymbol][i]?.Date);
-      let month =new Date(historicalData[stockSymbol][i]?.Date);
-      let year =new Date(historicalData[stockSymbol][i]?.Date);
-      if( 
+
+    for (let i = 0; i < historicalData[stockSymbol]?.length; i++) {
+      let date = new Date(historicalData[stockSymbol][i]?.Date);
+      let month = new Date(historicalData[stockSymbol][i]?.Date);
+      let year = new Date(historicalData[stockSymbol][i]?.Date);
+      if (
         currentDate.getDate() <= date?.getDate() &&
         currentDate.getMonth() <= month.getMonth() &&
         currentDate.getFullYear() <= year.getFullYear()
-      ){
-        while(currentDate <= endDate){
-          let date =new Date(historicalData[stockSymbol][i]?.Date);
-          let month =new Date(historicalData[stockSymbol][i]?.Date);
-          let year =new Date(historicalData[stockSymbol][i]?.Date);
-          if( 
+      ) {
+        while (currentDate <= endDate) {
+          let date = new Date(historicalData[stockSymbol][i]?.Date);
+          let month = new Date(historicalData[stockSymbol][i]?.Date);
+          let year = new Date(historicalData[stockSymbol][i]?.Date);
+          if (
             currentDate.getDate() === date?.getDate() &&
             currentDate.getMonth() === month.getMonth() &&
-            currentDate.getFullYear() === year.getFullYear() 
-          ){
-            if(high < historicalData[stockSymbol][i]?.High){
-              tempHigh = Math.max(tempHigh,historicalData[stockSymbol][i].High);
+            currentDate.getFullYear() === year.getFullYear()
+          ) {
+            if (high < historicalData[stockSymbol][i]?.High) {
+              tempHigh = Math.max(
+                tempHigh,
+                historicalData[stockSymbol][i].High
+              );
             }
-            if(low > historicalData[stockSymbol][i]?.Low){
-              tempLow = Math.min(tempLow,historicalData[stockSymbol][i].Low);
+            if (low > historicalData[stockSymbol][i]?.Low) {
+              tempLow = Math.min(tempLow, historicalData[stockSymbol][i].Low);
             }
-            tempTurnover = tempTurnover+historicalData[stockSymbol][i].Turnover;
-            tempTpxv = tempTpxv+(((historicalData[stockSymbol][i].High+historicalData[stockSymbol][i].Low+historicalData[stockSymbol][i].Close)/3)*historicalData[stockSymbol][i].Volume);
-            cumulativeVolume = cumulativeVolume+historicalData[stockSymbol][i].Volume;
+            tempTurnover =
+              tempTurnover + historicalData[stockSymbol][i].Turnover;
+            tempTpxv =
+              tempTpxv +
+              ((historicalData[stockSymbol][i].High +
+                historicalData[stockSymbol][i].Low +
+                historicalData[stockSymbol][i].Close) /
+                3) *
+                historicalData[stockSymbol][i].Volume;
+            cumulativeVolume =
+              cumulativeVolume + historicalData[stockSymbol][i].Volume;
             data.push(historicalData[stockSymbol][i++]);
-            currentDate.setDate(currentDate.getDate()+1);
-          }else{
-            currentDate.setDate(currentDate.getDate()+1);
+            currentDate.setDate(currentDate.getDate() + 1);
+          } else {
+            currentDate.setDate(currentDate.getDate() + 1);
           }
         }
         break;
@@ -142,7 +163,7 @@ const Dashboard = () => {
     setTpxv(tempTpxv);
     setTurnover(tempTurnover);
     setVolume(cumulativeVolume);
-  },[fromDate,toDate,stockSymbol])
+  }, [fromDate, toDate, stockSymbol]);
   useEffect(() => {
     for (let i = 0; i < allStocks.length; i++) {
       if (stockSymbol === allStocks[i].Symbol) {
@@ -155,94 +176,209 @@ const Dashboard = () => {
         });
       }
     }
-  }, [stockSymbol,allStocks]);
+  }, [stockSymbol, allStocks]);
   return (
-    <div className={`${darkMode?"bg-black":"bg-green-100"}`}>
+    <div className={`${darkMode ? "bg-black" : "bg-green-100"}`}>
+      <Header />
       <div
-        className={`custom-scrollbar auto-rows-fr gap-10 px-10 pb-10 font-roboto 
+        className={`custom-scrollbar auto-rows-fr gap-10  pb-10 px-3 font-roboto 
         ${darkMode ? " text-gray-300" : " "} 
         `}
       >
-        <div style={{marginLeft:"-50px"}}>
-          <Header />
-        </div>
-        <div className={`py-3`}>
+        <div className={`py-5`}>
           <Overview />
         </div>
-        {(stockSymbol!="FB") && (
-          <>
-          <h1 className="headlines flex justify-end" style={{color:darkMode?" rgba(255, 255, 255, 0.119)":"rgba(0, 0, 0, 0.3)"}}>#company</h1>
-        <div className="pb-5">
-          <StockDetails details={stockDetails} />
-        </div>
-        <h1 className="headlines flex justify-end" style={{color:darkMode?" rgba(255, 255, 255, 0.119)":"rgba(0, 0, 0, 0.3)"}}>#historicaldata</h1>
-        <div className='flex justify-end gap-4'>
-            <input type="date" value={fromDate} onChange={e=>setFromDate(e.target.value)} max="2021-04-29" min="2020-05-04" className={`my-2 py-1 px-3 rounded-md border-2 border-gray-600 card ${darkMode?"bg-gray-900":"bg-blue-100"}`} />
-            <input type="date" value={toDate} onChange={e=>setToDate(e.target.value)} min="2020-05-05" max="2021-04-30"  className={`my-2 py-1 px-3 rounded-md border-2 border-gray-600 card ${darkMode?"bg-gray-900":"bg-blue-100"}`} />
-        </div>
-        <div className='flex flex-wrap justify-between gap-3'>
-            <div className={`h-full stock-value card rounded-md relative p-8 border-2 bg-blue-100 shadow-md my-3 ${darkMode?"bg-gray-900 border-gray-800":"bg-blue-100 border-blue-100"}`}
-            style={{ color:"gray",overflow:"auto"}}
+        {stockSymbol != "FB" && (
+          <div>
+            <h1
+              className="headlines flex justify-end"
+              style={{
+                color: darkMode
+                  ? " rgba(255, 255, 255, 0.119)"
+                  : "rgba(0, 0, 0, 0.3)",
+              }}
             >
-                <div className='font-extrabold text-xl pb-3' >P. CLOSE</div>
-                <div className='font-bold text-blue-300'>{stockData[0]? stockData[0].pclose:""}</div>
+              #company
+            </h1>
+            <div className="pb-5">
+              <StockDetails details={stockDetails} />
             </div>
-            <div className={`h-full stock-value card rounded-md relative p-8 border-2 bg-blue-100 shadow-md my-3 ${darkMode?"bg-gray-900 border-gray-800":"bg-blue-100 border-blue-100"}`}
-            style={{ color:"gray",overflow:"auto"}}
+            <h1
+              className="headlines flex justify-end"
+              style={{
+                color: darkMode
+                  ? " rgba(255, 255, 255, 0.119)"
+                  : "rgba(0, 0, 0, 0.3)",
+              }}
             >
-                <div className='font-extrabold text-xl pb-3' >OPEN</div>
-                <div className='font-bold  text-blue-300'>{stockData[0]?stockData[0].Open:""}</div>
+              #historicaldata
+            </h1>
+            <div className="flex justify-end gap-4">
+              <input
+                type="date"
+                value={fromDate}
+                onChange={(e) => setFromDate(e.target.value)}
+                max="2021-04-29"
+                min="2020-05-04"
+                className={`my-2 py-1 px-3 rounded-md border-2 border-gray-600 card ${
+                  darkMode ? "bg-gray-900" : "bg-blue-100"
+                }`}
+              />
+              <input
+                type="date"
+                value={toDate}
+                onChange={(e) => setToDate(e.target.value)}
+                min="2020-05-05"
+                max="2021-04-30"
+                className={`my-2 py-1 px-3 rounded-md border-2 border-gray-600 card ${
+                  darkMode ? "bg-gray-900" : "bg-blue-100"
+                }`}
+              />
             </div>
-            <div className={`h-full stock-value card rounded-md relative p-8 border-2 bg-blue-100 shadow-md my-3 ${darkMode?"bg-gray-900 border-gray-800":"bg-blue-100 border-blue-100"}`}
-            style={{ color:"gray",overflow:"auto"}}
+            <div className="flex flex-wrap justify-between gap-3">
+              <div
+                className={`h-full stock-value card rounded-md relative p-8 border-2 bg-blue-100 shadow-md my-3 ${
+                  darkMode
+                    ? "bg-gray-900 border-gray-800"
+                    : "bg-blue-100 border-blue-100"
+                }`}
+                style={{ color: "gray", overflow: "auto" }}
+              >
+                <div className="font-extrabold text-xl pb-3">P. CLOSE</div>
+                <div className="font-bold text-blue-300">
+                  {stockData[0] ? stockData[0].pclose : ""}
+                </div>
+              </div>
+              <div
+                className={`h-full stock-value card rounded-md relative p-8 border-2 bg-blue-100 shadow-md my-3 ${
+                  darkMode
+                    ? "bg-gray-900 border-gray-800"
+                    : "bg-blue-100 border-blue-100"
+                }`}
+                style={{ color: "gray", overflow: "auto" }}
+              >
+                <div className="font-extrabold text-xl pb-3">OPEN</div>
+                <div className="font-bold  text-blue-300">
+                  {stockData[0] ? stockData[0].Open : ""}
+                </div>
+              </div>
+              <div
+                className={`h-full stock-value card rounded-md relative p-8 border-2 bg-blue-100 shadow-md my-3 ${
+                  darkMode
+                    ? "bg-gray-900 border-gray-800"
+                    : "bg-blue-100 border-blue-100"
+                }`}
+                style={{ color: "gray", overflow: "auto" }}
+              >
+                <div className="font-extrabold text-xl pb-3">HIGH</div>
+                <div className="font-bold text-blue-300">
+                  {high > 0 ? high : ""}
+                </div>
+              </div>
+              <div
+                className={`h-full stock-value card rounded-md relative p-8 border-2 bg-blue-100 shadow-md my-3 ${
+                  darkMode
+                    ? "bg-gray-900 border-gray-800"
+                    : "bg-blue-100 border-blue-100"
+                }`}
+                style={{ color: "gray", overflow: "auto" }}
+              >
+                <div className="font-extrabold text-xl pb-3">LOW</div>
+                <div className="font-bold  text-blue-300">
+                  {low != Infinity ? low : ""}
+                </div>
+              </div>
+              <div
+                className={`h-full stock-value card rounded-md relative p-8 border-2 bg-blue-100 shadow-md my-3 ${
+                  darkMode
+                    ? "bg-gray-900 border-gray-800"
+                    : "bg-blue-100 border-blue-100"
+                }`}
+                style={{ color: "gray", overflow: "auto" }}
+              >
+                <div className="font-extrabold text-xl pb-3">CLOSE*</div>
+                <div className="font-bold  text-blue-300">
+                  {stockData[stockData.length - 1]
+                    ? stockData[stockData.length - 1].Close
+                    : ""}
+                </div>
+              </div>
+              <div
+                className={`h-full stock-value card rounded-md relative p-8 border-2 bg-blue-100 shadow-md my-3 ${
+                  darkMode
+                    ? "bg-gray-900 border-gray-800"
+                    : "bg-blue-100 border-blue-100"
+                }`}
+                style={{ color: "gray", overflow: "auto" }}
+              >
+                <div className="font-extrabold text-xl pb-3">VWAP</div>
+                <div className="font-bold  text-blue-300">
+                  {tpxv && volume ? Math.round(tpxv / volume) : ""}
+                </div>
+              </div>
+            </div>
+            <div
+              className={`card mt-3 mb-5 border-5 ${
+                darkMode ? "bg-gray-900" : "bg-blue-100"
+              }`}
             >
-                <div className='font-extrabold text-xl pb-3' >HIGH</div>
-                <div className='font-bold text-blue-300'>{high>0?high:""}</div>
+              <DataTable
+                title="Historical Data"
+                columns={columns}
+                data={stockData}
+                theme="solarized"
+                pagination
+              />
             </div>
-            <div className={`h-full stock-value card rounded-md relative p-8 border-2 bg-blue-100 shadow-md my-3 ${darkMode?"bg-gray-900 border-gray-800":"bg-blue-100 border-blue-100"}`}
-            style={{ color:"gray",overflow:"auto"}}
+            <h1
+              className="headlines flex justify-end"
+              style={{
+                color: darkMode
+                  ? " rgba(255, 255, 255, 0.119)"
+                  : "rgba(0, 0, 0, 0.3)",
+              }}
             >
-                <div className='font-extrabold text-xl pb-3' >LOW</div>
-                <div className='font-bold  text-blue-300'>{low!=Infinity?low:""}</div>
-            </div>
-            <div className={`h-full stock-value card rounded-md relative p-8 border-2 bg-blue-100 shadow-md my-3 ${darkMode?"bg-gray-900 border-gray-800":"bg-blue-100 border-blue-100"}`}
-            style={{ color:"gray",overflow:"auto"}}
+              #charts
+            </h1>
+            <div
+              className={`pr-10 py-3 mb-5 ${
+                darkMode ? "bg-gray-900" : "bg-blue-100"
+              } card`}
+              style={{ height: "50vh" }}
             >
-                <div className='font-extrabold text-xl pb-3' >CLOSE*</div>
-                <div className='font-bold  text-blue-300'>{stockData[stockData.length-1]?stockData[stockData.length-1].Close:""}</div>
+              <Chart stockData={stockData}>Chart</Chart>
             </div>
-            <div className={`h-full stock-value card rounded-md relative p-8 border-2 bg-blue-100 shadow-md my-3 ${darkMode?"bg-gray-900 border-gray-800":"bg-blue-100 border-blue-100"}`}
-            style={{ color:"gray",overflow:"auto"}}
+            <h1
+              className="headlines flex justify-end"
+              style={{
+                color: darkMode
+                  ? " rgba(255, 255, 255, 0.119)"
+                  : "rgba(0, 0, 0, 0.3)",
+              }}
             >
-                <div className='font-extrabold text-xl pb-3' >VWAP</div>
-                <div className='font-bold  text-blue-300'>{(tpxv && volume)?Math.round(tpxv/volume):""}</div>
+              #details
+            </h1>
+            <div className="pb-3">
+              <TradeInfo
+                details={stockData}
+                totalTradedValue={turnover}
+                totalTradedShares={volume}
+              />
             </div>
-        </div>
-        <div className={`card mt-3 mb-5 border-5 ${darkMode?"bg-gray-900":"bg-blue-100"}`}>
-          <DataTable
-            title="Historical Data"
-            columns={columns}
-            data={stockData}
-            theme="solarized"
-            pagination
-            />
-        </div>
-        <h1 className="headlines flex justify-end" style={{color:darkMode?" rgba(255, 255, 255, 0.119)":"rgba(0, 0, 0, 0.3)"}}>#charts</h1>
-        <div className={`pr-10 py-3 mb-5 ${darkMode?"bg-gray-900":"bg-blue-100"} card`} style={{ height: "50vh" }}>
-          <Chart stockData={stockData} >Chart</Chart>
-        </div>
-        <h1 className="headlines flex justify-end" style={{color:darkMode?" rgba(255, 255, 255, 0.119)":"rgba(0, 0, 0, 0.3)"}}>#details</h1>
-        <div className="pb-3">
-          <TradeInfo details={stockData} totalTradedValue={turnover} totalTradedShares={volume} />
-        </div>
-        <div className="py-3">
-          <PriceInfo details={stockData} yearlyHigh={yearlyHigh} yearlyLow={yearlyLow} />
-        </div>
-          </>
+            <div className="py-3">
+              <PriceInfo
+                details={stockData}
+                yearlyHigh={yearlyHigh}
+                yearlyLow={yearlyLow}
+              />
+            </div>
+          </div>
         )}
       </div>
       <div
-        className={`footersection row-span-2 col-span-2 xl:col-span-3 ${stockSymbol=="FB"?"fixed-bottom bg-black":""}`}
+        className={`footersection row-span-2 col-span-2 xl:col-span-3 ${
+          stockSymbol == "FB" ? "fixed-bottom bg-black" : ""
+        }`}
         style={{
           background: darkMode
             ? "radial-gradient(circle, rgba(34, 85, 195, 0.77) 0%, rgba(0,0,0,1) 100%, rgba(17,24,39,1) 100%)"
