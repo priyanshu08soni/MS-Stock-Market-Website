@@ -16,32 +16,22 @@ const Header = () => {
   return (
     <>
       <header className="flex align-items-center justify-between">
-        <div className="pb-4">
+        <div>
           <div id="menu">
             <div id="menu-bar" onClick={menuOnClick}>
-              <div
-                id="bar1"
-                className={`bar ${
-                  darkMode ? "bg-blue-700 text-gray-300" : " bg-blue-700"
-                } `}
-              ></div>
-              <div
-                id="bar2"
-                className={`bar ${
-                  darkMode ? "bg-blue-700 text-gray-300" : " bg-blue-700"
-                } `}
-              ></div>
-              <div
-                id="bar3"
-                className={`bar ${
-                  darkMode ? "bg-blue-700 text-gray-300" : " bg-blue-700"
-                } `}
-              ></div>
+              <div id="bar1" className="bar"></div>
+              <div id="bar2" className="bar"></div>
+              <div id="bar3" className="bar"></div>
             </div>
             <nav class="nav" id="nav">
               <ul>
                 <li>
-                  <NavLink className="navlink" to="/">
+                  <NavLink
+                    to="/"
+                    className={({ isActive }) =>
+                      `navlink ${isActive ? "active-link" : ""}`
+                    }
+                  >
                     Home
                   </NavLink>
                 </li>
@@ -51,24 +41,43 @@ const Header = () => {
                       setDarkMode(true);
                     }
                   }}
-                  className={isDashboard ? "nav-item disabled" : "nav-item"}
                 >
-                  <NavLink className="navlink" to="/dashboard">
+                  <NavLink
+                    to="/dashboard"
+                    className={({ isActive }) =>
+                      `navlink ${isActive ? "active-link" : ""}`
+                    }
+                  >
                     Dashboard
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink className="navlink" to="/docs">
+                  <NavLink
+                    to="/docs"
+                    className={({ isActive }) =>
+                      `navlink ${isActive ? "active-link" : ""}`
+                    }
+                  >
                     Documentation
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink className="navlink" to="/about">
+                  <NavLink
+                    to="/about"
+                    className={({ isActive }) =>
+                      `navlink ${isActive ? "active-link" : ""}`
+                    }
+                  >
                     About
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink className="navlink" to="/contact">
+                  <NavLink
+                    to="/contact"
+                    className={({ isActive }) =>
+                      `navlink ${isActive ? "active-link" : ""}`
+                    }
+                  >
                     Contact
                   </NavLink>
                 </li>
@@ -80,10 +89,7 @@ const Header = () => {
           </div>
           <div class="menu-bg" id="menu-bg"></div>
         </div>
-        <div className={`z-10 websitename text-blue-700 `}>-MS-</div>
-        <div className={`logo flex items-center text-blue-700`}>
-          <MdOutlineLeaderboard />
-        </div>
+        <div className={`z-10 websitename text-blue-700 `}>MS</div>
       </header>
     </>
   );

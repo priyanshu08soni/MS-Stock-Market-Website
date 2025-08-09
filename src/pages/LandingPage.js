@@ -73,7 +73,7 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
-      <section>
+      <section className="analysis">
         <div className="headline4">Giving A Through &nbsp; <b className="stylehead">Analysis</b></div>
         <section className="design-section mt-2">
               <div className="timeline">
@@ -167,8 +167,7 @@ const LandingPage = () => {
       </section>
       <section className="bg-transparent">
         <div className="tradeview">
-          <h1>Trade with your</h1>
-          <h1>#TradingView</h1>
+          <h1>Trade with your #TradingView</h1>
         </div>
       </section>
       <section className="footersection">
