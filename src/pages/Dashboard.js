@@ -220,7 +220,7 @@ const Dashboard = () => {
                 onChange={(e) => setFromDate(e.target.value)}
                 max="2021-04-29"
                 min="2020-05-04"
-                className={`my-2 py-1 px-3 rounded-md border-2 border-gray-600 card ${
+                className={`my-2 py-1 px-3 rounded-md card ${
                   darkMode ? "bg-gray-900" : "bg-blue-100"
                 }`}
               />
@@ -230,7 +230,7 @@ const Dashboard = () => {
                 onChange={(e) => setToDate(e.target.value)}
                 min="2020-05-05"
                 max="2021-04-30"
-                className={`my-2 py-1 px-3 rounded-md border-2 border-gray-600 card ${
+                className={`my-2 py-1 px-3 rounded-md  card ${
                   darkMode ? "bg-gray-900" : "bg-blue-100"
                 }`}
               />

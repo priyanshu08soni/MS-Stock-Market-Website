@@ -10,7 +10,7 @@ const StockDetails = ({details}) => {
             style={{ color:"gray",overflow:"auto"}}
             >
                 <div className='font-extrabold text-xl pb-3' >{details.Symbol}</div>
-                <div className='font-bold text-white'>{details.Company} ({details.ISIN})</div>
+                <div className={`font-bold ${darkMode?"text-white":"text-gray"}`}>{details.Company} ({details.ISIN})</div>
                 <div> {details.Industry} </div>
                 <div>{details.Series}</div>
         </div>
