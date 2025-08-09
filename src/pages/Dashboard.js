@@ -43,6 +43,14 @@ const Dashboard = () => {
   ];
   //Date Filter Data Extraction
   const [stockData, setStockData] = useState([]);
+  const [fromDate, setFromDate] = useState("2020-05-04");
+  const [toDate, setToDate] = useState("2021-04-30");
+  const [high, setHigh] = useState(-Infinity);
+  const [low, setLow] = useState(Infinity);
+  const [turnover, setTurnover] = useState(0);
+  //tpxv = cumulative value( TypicalPrice*volume)
+  const [tpxv, setTpxv] = useState(0);
+  const [volume, setVolume] = useState(0);
   createTheme(
     "solarized",
     {
@@ -72,98 +80,75 @@ const Dashboard = () => {
     },
     "dark"
   );
-  const [yearlyHigh, setYearlyHigh] = useState(-Infinity);
-  const [yearlyLow, setYearlyLow] = useState(Infinity);
-  useEffect(() => {
-    let tempYearlyHigh = -Infinity;
-    let tempYearlyLow = Infinity;
-    for (let i = 0; i < historicalData[stockSymbol]?.length; i++) {
-      tempYearlyHigh = Math.max(
-        tempYearlyHigh,
-        historicalData[stockSymbol][i]?.High
-      );
-      tempYearlyLow = Math.min(
-        tempYearlyLow,
-        historicalData[stockSymbol][i]?.Low
-      );
-    }
-    setYearlyHigh(tempYearlyHigh);
-    setYearlyLow(tempYearlyLow);
-  }, [historicalData]);
+  
 
-  const [fromDate, setFromDate] = useState("2020-05-04");
-  const [toDate, setToDate] = useState("2021-04-30");
-  const [high, setHigh] = useState(-Infinity);
-  const [low, setLow] = useState(Infinity);
-  const [turnover, setTurnover] = useState(0);
-  //tpxv = cumulative value( TypicalPrice*volume)
-  const [tpxv, setTpxv] = useState(0);
-  const [volume, setVolume] = useState(0);
+  
   console.log(stockSymbol);
   useEffect(() => {
+    // defensive checks
+    if (!historicalData[stockSymbol] || !fromDate || !toDate) {
+      setStockData([]);
+      setHigh(-Infinity);
+      setLow(Infinity);
+      setTpxv(0);
+      setTurnover(0);
+      setVolume(0);
+      return;
+    }
+
+    // parse and make 'to' inclusive (end of day)
+    let start = new Date(fromDate);
+    let end = new Date(toDate);
+    end.setHours(23, 59, 59, 999);
+
+    // if user accidentally picks from > to, swap so we always have a valid range
+    if (start > end) {
+      const tmp = start;
+      start = end;
+      end = tmp;
+    }
+
+    const all = historicalData[stockSymbol];
+
+    // filter entries that fall into [start, end]
+    const filtered = all.filter((item) => {
+      if (!item?.Date) return false;
+      const d = new Date(item.Date);
+      return d >= start && d <= end;
+    });
+
+    // compute aggregates
     let tempHigh = -Infinity;
     let tempLow = Infinity;
     let tempTurnover = 0;
     let tempTpxv = 0;
     let cumulativeVolume = 0;
-    let data = [];
-    let currentDate = new Date(fromDate);
-    let endDate = new Date(toDate);
 
-    for (let i = 0; i < historicalData[stockSymbol]?.length; i++) {
-      let date = new Date(historicalData[stockSymbol][i]?.Date);
-      let month = new Date(historicalData[stockSymbol][i]?.Date);
-      let year = new Date(historicalData[stockSymbol][i]?.Date);
-      if (
-        currentDate.getDate() <= date?.getDate() &&
-        currentDate.getMonth() <= month.getMonth() &&
-        currentDate.getFullYear() <= year.getFullYear()
-      ) {
-        while (currentDate <= endDate) {
-          let date = new Date(historicalData[stockSymbol][i]?.Date);
-          let month = new Date(historicalData[stockSymbol][i]?.Date);
-          let year = new Date(historicalData[stockSymbol][i]?.Date);
-          if (
-            currentDate.getDate() === date?.getDate() &&
-            currentDate.getMonth() === month.getMonth() &&
-            currentDate.getFullYear() === year.getFullYear()
-          ) {
-            if (high < historicalData[stockSymbol][i]?.High) {
-              tempHigh = Math.max(
-                tempHigh,
-                historicalData[stockSymbol][i].High
-              );
-            }
-            if (low > historicalData[stockSymbol][i]?.Low) {
-              tempLow = Math.min(tempLow, historicalData[stockSymbol][i].Low);
-            }
-            tempTurnover =
-              tempTurnover + historicalData[stockSymbol][i].Turnover;
-            tempTpxv =
-              tempTpxv +
-              ((historicalData[stockSymbol][i].High +
-                historicalData[stockSymbol][i].Low +
-                historicalData[stockSymbol][i].Close) /
-                3) *
-                historicalData[stockSymbol][i].Volume;
-            cumulativeVolume =
-              cumulativeVolume + historicalData[stockSymbol][i].Volume;
-            data.push(historicalData[stockSymbol][i++]);
-            currentDate.setDate(currentDate.getDate() + 1);
-          } else {
-            currentDate.setDate(currentDate.getDate() + 1);
-          }
-        }
-        break;
+    filtered.forEach((item) => {
+      if (typeof item.High === "number") {
+        tempHigh = Math.max(tempHigh, item.High);
       }
-    }
-    setStockData(data);
-    setHigh(tempHigh);
-    setLow(tempLow);
+      if (typeof item.Low === "number") {
+        tempLow = Math.min(tempLow, item.Low);
+      }
+      tempTurnover += Number(item.Turnover || 0);
+      const typicalPrice =
+        (Number(item.High || 0) +
+          Number(item.Low || 0) +
+          Number(item.Close || 0)) /
+        3;
+      tempTpxv += typicalPrice * Number(item.Volume || 0);
+      cumulativeVolume += Number(item.Volume || 0);
+    });
+
+    setStockData(filtered);
+    setHigh(tempHigh === -Infinity ? -Infinity : tempHigh);
+    setLow(tempLow === Infinity ? Infinity : tempLow);
     setTpxv(tempTpxv);
     setTurnover(tempTurnover);
     setVolume(cumulativeVolume);
   }, [fromDate, toDate, stockSymbol]);
+
   useEffect(() => {
     for (let i = 0; i < allStocks.length; i++) {
       if (stockSymbol === allStocks[i].Symbol) {
@@ -368,8 +353,6 @@ const Dashboard = () => {
             <div className="py-3">
               <PriceInfo
                 details={stockData}
-                yearlyHigh={yearlyHigh}
-                yearlyLow={yearlyLow}
               />
             </div>
           </div>
