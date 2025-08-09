@@ -544,6 +544,8 @@ header{
 /* About Page */
 .about-text{
   font-family: "Platypi", serif;
+  margin: 10px 40px 20px 40px;
+  color: gray;
 }
 
 .design-section {
