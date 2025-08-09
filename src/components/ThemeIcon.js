@@ -22,7 +22,7 @@ const ThemeIcon = () => {
     }, [bgColor,darkMode]); 
   return (
     <>
-    <button className={`d-flex gap-3 rounded-lg border-2
+    <button className={`d-flex gap-3 rounded-lg 
      ${darkMode? "shadow-gray-600" :null}`} 
     onClick={toggleDarkMode}
     >
