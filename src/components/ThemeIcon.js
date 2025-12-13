@@ -1,36 +1,34 @@
-import React, { useContext } from 'react'
-import {MoonIcon} from "@heroicons/react/solid"
-import { FiSun } from "react-icons/fi";
-import ThemeContext from '../context/ThemeContext';
-import { useState } from 'react';
-import { useEffect } from 'react';
-const ThemeIcon = () => {
-   const {darkMode,setDarkMode}=useContext(ThemeContext);
-   const [bgColor, setBgColor] = useState('black'); // Set default background color
+import React, { useContext, useEffect, useState } from "react";
+import { Moon, Sun } from "lucide-react";
+import ThemeContext from "../context/ThemeContext";
 
-   const toggleDarkMode=()=>{
-     if(darkMode===true){
-        setDarkMode(false);
-        setBgColor('rgba(220,252,232,1)')
-      }else{
-        setDarkMode(true);
-        setBgColor('black');
-      }
-    }
-    useEffect(() => {
-      document.body.style.backgroundColor = bgColor;
-    }, [bgColor,darkMode]); 
+const ThemeIcon = () => {
+  const { darkMode, setDarkMode } = useContext(ThemeContext);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
   return (
-    <>
-    <button className={`d-flex gap-3 rounded-lg 
-     ${darkMode? "shadow-gray-600" :null}`} 
-    onClick={toggleDarkMode}
+    <button
+      onClick={() => setDarkMode(!darkMode)}
+      className={`relative w-16 h-8 rounded-full p-1 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 shadow-inner ${darkMode ? "bg-neutral-800 border border-neutral-700" : "bg-indigo-100 border border-indigo-200"
+        }`}
+      aria-label="Toggle theme"
     >
-      <MoonIcon className={`h-6 w-6 cursor-pointer stroke-1 fill-none ${darkMode? "fill-yellow-400 stroke-yellow-400":"fill-none stroke-neutral-500 "}`} />
-      <FiSun className={`h-6 w-6 cursor-pointer stroke-1 fill-none ${darkMode? "fill-none stroke-neutral-500":"fill-yellow-400 stroke-yellow-400 "}`} />
+      <div
+        className={`w-6 h-6 rounded-full shadow-md transform transition-transform duration-300 flex items-center justify-center ${darkMode
+            ? "translate-x-8 bg-indigo-500 text-white"
+            : "translate-x-0 bg-white text-yellow-500"
+          }`}
+      >
+        {darkMode ? <Moon size={14} /> : <Sun size={14} />}
+      </div>
     </button>
-    </>
-  )
+  );
 }
 
-export default ThemeIcon
+export default ThemeIcon;

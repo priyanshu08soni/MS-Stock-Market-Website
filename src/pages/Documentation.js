@@ -1,13 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { useContext } from "react";
 import ThemeContext from "../context/ThemeContext";
-import { FcInfo } from "react-icons/fc";
-import DataTable ,{createTheme} from "react-data-table-component";
+import { Info, Github } from "lucide-react";
+import DataTable from "react-data-table-component";
 import { mockSearchResults } from "../sample-data/mock";
-import { useState } from "react";
-import { useEffect } from "react";
+
 import s1 from "../assets/s1.png";
 import s2 from "../assets/s2.png";
 import s3 from "../assets/s3.png";
@@ -16,265 +14,116 @@ import s5 from "../assets/s5.png";
 import s6 from "../assets/s6.png";
 import s7 from "../assets/s7.png";
 import s8 from "../assets/s8.png";
+
 const Documentation = () => {
   const { darkMode } = useContext(ThemeContext);
   const allStocks = mockSearchResults.result;
+
   const columns = [
-    {
-      name: "Company Name",
-      selector: (row) => row["Company Name"],
-      sortable: true,
-      grow: 2,
-    },
+    { name: "Company Name", selector: (row) => row["Company Name"], sortable: true, grow: 2 },
     { name: "Symbol", selector: (row) => row.Symbol, sortable: true },
     { name: "ISIN", selector: (row) => row["ISIN Code"], sortable: true },
-    {
-      name: "Industry",
-      selector: (row) => row.Industry,
-      sortable: true,
-      grow: 2,
-    },
+    { name: "Industry", selector: (row) => row.Industry, sortable: true, grow: 2 },
     { name: "Series", selector: (row) => row.Series, sortable: true },
   ];
-  createTheme(
-    'solarized',
-    {
-      text: {
-        primary: '#268bd2',
-        secondary: '#2aa198',
-      },
-      background: {
-        default: darkMode ? "bg-gray-900" : " bg-blue-100",
-      },
-      context: {
-        background: '#cb4b16',
-        text: '#FFFFFF',
-      },
-      divider: {
-        default: '#073642',
-      },
-      button: {
-        default: '#2aa198',
-        hover: 'rgba(0,0,0,.48)',
-        focus: 'rgba(255,255,255,.12)',
-        disabled: 'rgba(255, 255, 255, .34)',
-      },
-      sortFocus: {
-        default: '#2aa198',
-      },
+
+  const customStyles = {
+    header: { style: { background: 'transparent' } },
+    rows: {
+      style: {
+        background: 'transparent',
+        color: darkMode ? '#e5e7eb' : '#1f2937'
+      }
     },
-    'dark',
-  );
+    headCells: {
+      style: {
+        background: darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)',
+        color: darkMode ? '#9ca3af' : '#4b5563',
+        fontSize: '0.85rem',
+        fontWeight: 'bold'
+      }
+    },
+    pagination: { style: { background: 'transparent', color: 'inherit' } },
+    table: { style: { background: 'transparent' } }
+  };
+
   return (
-    <div className={`${darkMode ? "bg-black" : "bg-blue-300"}`}>
+    <div className={`min-h-screen transition-colors duration-300 ${darkMode ? "bg-slate-900 text-gray-100" : "bg-gray-100 text-gray-800"}`}>
       <Header />
-      <div>
-        <h1
-          className={`headlines mt-5 ms-4`}
-          style={{
-            color: darkMode
-              ? " rgba(255, 255, 255, 0.119)"
-              : "rgba(0, 0, 0, 0.3)",
-          }}
-        >
+
+      <main className="max-w-7xl mx-auto px-6 py-12">
+        <h1 className="text-4xl md:text-5xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-purple-500">
           #Documentation
         </h1>
-        <div className="about-text">
-          MS - Market Screeners is a stock market analysis platform, where we
-          harness the power of data to help you make informed investment
-          decisions. Leveraging the Nifty-50 Kaggle dataset, we provide
-          comprehensive insights into the Indian stock market, specifically
-          focusing on the Nifty-50 index.
-        </div>
-        <div className={` px-5 py-1 w-50`}>
-          <div className={`d-flex items-center gap-2 px-2 py-1 ${darkMode?"bg-blue-300":"bg-red-300"}`}>
-            <FcInfo /> Note :{" "}
+
+        <div className={`p-8 rounded-3xl shadow-md backdrop-blur-sm mb-12 ${darkMode ? "bg-slate-800/50" : "bg-white"}`}>
+          <p className="text-xl leading-relaxed opacity-90 mb-6">
+            MS - Market Screeners is a stock market analysis platform, where we
+            harness the power of data to help you make informed investment decisions.
+            Leveraging the Nifty-50 Kaggle dataset, we provide comprehensive
+            insights.
+          </p>
+
+          <div className={`flex items-start gap-4 p-4 rounded-xl mb-6 ${darkMode ? "bg-blue-900/20 border border-blue-800 text-blue-200" : "bg-blue-50 border border-blue-100 text-blue-700"}`}>
+            <Info className="shrink-0 mt-1" size={20} />
+            <div>
+              <span className="font-bold block mb-1">Data Source</span>
+              This data is taken from <a className="underline hover:text-blue-500" href="https://www.kaggle.com/datasets/rohanrao/nifty50-stock-market-data">Kaggle (Nifty-50)</a>.
+            </div>
           </div>
-          <div className={`bg-blue-200 px-2 py-1`}>
-            This data is taken from{" "}
-            <a
-              className="text-blue-600"
-              href="https://www.kaggle.com/datasets/rohanrao/nifty50-stock-market-data"
-            >
-              Kaggle (Nifty-50)
-            </a>
-            .
-          </div>
-        </div>
-        <div className="about-text ">
-          <p>GitHub Project Page :</p>
-          <a href="https://github.com/priyanshu08soni/MS-Stock-Market-Website">
-            {" "}
-            (Click Here)
+
+          <a href="https://github.com/priyanshu08soni/MS-Stock-Market-Website" className={`inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium transition ${darkMode ? "bg-neutral-800 hover:bg-neutral-700" : "bg-white border hover:bg-gray-50 text-gray-700"}`}>
+            <Github size={18} />
+            View on GitHub
           </a>
         </div>
-        <div className="about-text ">
-          <p>Stocks that are involved :</p>
-          <div
-            className={`card mt-3 mb-5 border-5 ${
-              darkMode ? "bg-gray-900" : "bg-blue-100"
-            }`}
-          >
+
+        <section className="mb-16">
+          <h2 className="text-2xl font-bold mb-6">Explore Stocks</h2>
+          <div className={`rounded-2xl shadow-md overflow-hidden ${darkMode ? "bg-slate-800/50" : "bg-white"}`}>
             <DataTable
               columns={columns}
               data={allStocks}
-              theme="solarized"
               pagination
+              customStyles={customStyles}
+              theme={darkMode ? "solarized" : "default"}
             />
           </div>
+        </section>
+
+        <h2 className="text-3xl font-bold mb-8 opacity-90">Getting Started Guide</h2>
+
+        <div className="space-y-12">
+          {[
+            { title: "Search for a Stock", desc: "Use the search bar to find stocks e.g., ADANIPORTS. Click on the result.", img: s1 },
+            { title: "Overview Details", desc: "View Company Name, ISIN, Industry, and Series.", img: s2 },
+            { title: "Date Range Filter", desc: "Select specific dates to analyze historical data range.", img: s3 },
+            { title: "Calculated Metrics", desc: "Get Previous Close, High, Low, VWAP and more for the selected range.", img: s4 },
+            { title: "Historical Data Table", desc: "Detailed daily records of OHLCV data.", img: s5 },
+            { title: "Interactive Area Charts", desc: "Hover over the chart to see precise values for any date.", img: s6 },
+            { title: "Trade Statistics", desc: "Volume, Value, Market Cap, and Impact Cost analytics.", img: s7 },
+            { title: "Price Analytics", desc: "52-Week High/Low and Price Bands.", img: s8 }
+          ].map((step, i) => (
+            <div key={i} className={`p-8 rounded-3xl backdrop-blur-sm flex flex-col lg:flex-row gap-8 items-center ${darkMode ? "bg-slate-800/50" : "bg-white"}`}>
+              <div className="flex-1 space-y-4">
+                <div className="text-sm font-bold text-indigo-500 uppercase tracking-wider">Step {i + 1}</div>
+                <h3 className="text-2xl font-bold">{step.title}</h3>
+                <p className="opacity-80 text-lg">{step.desc}</p>
+                {i === 2 && (
+                  <div className={`mt-4 p-3 rounded-lg text-sm inline-block ${darkMode ? "bg-yellow-900/20 text-yellow-200" : "bg-yellow-50 text-yellow-800"}`}>
+                    Note: Original Data Range (04-05-2020 to 30-04-2021)
+                  </div>
+                )}
+              </div>
+              <div className="flex-1 w-full max-w-lg">
+                <img src={step.img} alt={step.title} className="rounded-xl shadow-2xl border border-opacity-20 w-full hover:scale-105 transition duration-500" />
+              </div>
+            </div>
+          ))}
         </div>
-        <h1
-          className={`headlines mt-5 ms-4`}
-          style={{
-            color: darkMode
-              ? " rgba(255, 255, 255, 0.119)"
-              : "rgba(0, 0, 0, 0.3)",
-          }}
-        >
-          #GettingStarted(Dashboard)
-        </h1>
-        <div className=" about-text ">
-          <p className="text-gray-400 my-2">Entering the stock symbol :</p>
-          <div className="flex justify-between flex-wrap gap-5">
-            <p className="flex flex-col flex-wrap">
-              <p>
-              Search for your stock(using stock symbol) that 
-              </p>
-              <p>
-              you want to find.
-              Then hit Enter :
-              </p>
-              <p>Then Click On the resulted List : </p>
-              <p>EX : ( ADANIPORTS )</p>
-            </p>
-            <img className="docsImage" width={"400vw"} src={s1} alt="" />
-          </div>
-        </div>
-        <hr className = "docsDivider"/>
-        <div className="about-text ">
-          <p className="text-gray-400 my-2">Getting result for Overview :</p>
-          <div className="flex justify-between flex-wrap gap-5">
-            <p className="flex flex-col flex-wrap">
-              <p> In this we will be getting result as : Stock Symbol,</p>
-              <p>Company Name, ISIN Code, Industry, Series.</p>
-            </p>
-            <img className="docsImage" width={"400vw"} src={s2} alt="" />
-          </div>
-        </div>
-        <hr className = "docsDivider"/>
-        <div className="about-text ">
-          <p className="text-gray-400 my-2">Entering Date Range :</p>
-          <div className="flex justify-between flex-wrap gap-5">
-            <p className="flex flex-col flex-wrap">
-              <p>By entering(click on the calender symbol) the </p>
-              <p>specific date range will get us the ranged data.</p>
-            </p>
-            <img className="docsImage" width={"400vw"} src={s3} alt="" />
-          </div>
-        </div>
-        <div className={`mx-16 px-2 py-1 w-50`}>
-          <div
-            className={`d-flex items-center gap-2 px-2 py-1 ${darkMode?"bg-blue-300":"bg-red-300"}`}
-          >
-            <FcInfo /> Note :{" "}
-          </div>
-          <div className={`bg-blue-200 px-2 py-1`}>
-            Original data range ( 04-05-2020 to 30-04-2021 )
-          </div>
-        </div>
-        <hr className = "docsDivider"/>
-        <div className="about-text ">
-          <p className="text-gray-400 my-2">Getting Ranged Calculated data :</p>
-          <div className="flex justify-between flex-wrap gap-5">
-            <p className="flex flex-col flex-wrap">
-              <p>
-                The calculated data includes Previous Close,
-              </p>
-              <p>Open, Ranged Highest, Ranged Lowest,</p>
-              <p>Close*, VWAP.</p>
-            </p>
-            <img className="docsImage" width={"400vw"} src={s4} alt="" />
-          </div>
-        </div>
-        <hr className = "docsDivider"/>
-        <div className="about-text ">
-          <p className="text-gray-400 my-2">Getting Ranged Historical data :</p>
-          <div className="flex justify-between flex-wrap gap-5">
-            <p className="flex flex-col flex-wrap">
-              <p>
-                The Historical data includes Date, Previous Close,
-              </p>
-              <p>
-                Open, High, Low, Close*, VWAP, Volume, 
-              </p>
-              <p>Value of Stocks, Trades</p>
-            </p>
-            <img className="docsImage" width={"400vw"} src={s5} alt="" />
-          </div>
-        </div>
-        <hr className = "docsDivider"/>
-        <div className="about-text ">
-          <p className="text-gray-400 my-2">Historical data visualization using area graphs :</p>
-          <div className="flex justify-between flex-wrap gap-5">
-            <p className="flex flex-col flex-wrap">
-              <p>Y-axis is the value range and X-axis is Date range.</p>
-              <p className="text-gray-800">By hovering over a perticular date we will get the</p>
-              <p>cordinates for that point.</p>
-            </p>
-            <img className="docsImage" width={"400vw"} src={s6} alt="" />
-          </div>
-        </div>
-        <hr className = "docsDivider"/>
-        <div className="about-text ">
-          <p className="text-gray-400 my-2">Calculated Trade Information :</p>
-          <div className="flex justify-between flex-wrap gap-5">
-            <p className="flex flex-col flex-wrap">
-              <p>This calculated trade information includes:</p>
-              <p>a) Traded Volume(Lakhs)</p>
-              <p>b) Traded Value(₹Cr.)</p>
-              <p>c) Outstanding shares(Last Day)</p>
-              <p>d) Total Market Cap(Last Day)(₹Cr.)</p>
-              <p>e) Impact Cost</p>
-              <p>f) % of Deliverable(Last Day)</p>
-            </p>
-            <img className="docsImage" width={"400vw"} src={s7} alt="" />
-          </div>
-        </div>
-        <hr className = "docsDivider"/>
-        <div className="about-text ">
-          <p className="text-gray-400 my-2">Calculated Price Information :</p>
-          <div className="flex justify-between flex-wrap gap-5" >
-            <p className="flex flex-col flex-wrap">
-              <p>This calculated Price information includes:</p>
-              <p>a) 52W High ( 04-05-2020 to 30-04-2021 )</p>
-              <p>b) 52W Low ( 04-05-2020 to 30-04-2021 )</p>
-              <p>c) Upper Band</p>
-              <p>d) Lower Band</p>
-              <p>e) Price Band</p>
-            </p>
-            <img className="docsImage" width={"400vw"} src={s8} alt="" />
-          </div>
-        </div>
-        <hr className = "docsDivider"/>
-        <div className="about-text text-xl text-gray-400">
-            Whether you're a seasoned investor or just starting out, our platform equips you with the tools and data needed to make confident investment choices. Explore the dynamic world of stock trading with us and take your investment strategy to the next level.
-        </div>
-      </div>
-      <section className="footersection">
-        <div
-          className="footer"
-          style={{
-            border: darkMode
-              ? "3px solid rgba(255, 255, 255, 0.247)"
-              : "3px solid rgba(34, 85, 195, 0.247)",
-            background: darkMode
-              ? "rgba(255, 255, 255, 0.133)"
-              : "rgba(25, 68, 142, 0.523)",
-          }}
-        >
-          <Footer />
-        </div>
-      </section>
+      </main>
+
+      <Footer />
     </div>
   );
 };

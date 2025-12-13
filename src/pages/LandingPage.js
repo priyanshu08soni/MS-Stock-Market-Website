@@ -1,186 +1,143 @@
-import React from "react";
+import React, { useContext } from "react";
+import { TrendingUp, BarChart3, ShieldCheck, Zap } from "lucide-react";
+import { motion } from "framer-motion";
 import Header from "../components/Header";
-import stockImage from "../assets/stock.webp";
-import stockvideo from "../assets/stock2.mp4";
-import climbingImage from "../assets/climbing.jpg";
 import Footer from "../components/Footer";
-import { useContext } from "react";
 import ThemeContext from "../context/ThemeContext";
-const LandingPage = () => {
+
+export default function LandingPage() {
   const { darkMode } = useContext(ThemeContext);
 
   return (
-    <div className={`${darkMode?"bg-gray-950":"bg-gray-200"}`}>
-      <section className="landingpage relative">
-        <Header />
-        <div className="landingImage">
-          <video
-            className="absolute top-0 w-full"
-            src={stockvideo}
-            autoPlay
-            loop
-            muted
-          ></video>
+    <div className={`min-h-screen transition-colors duration-300 ${darkMode ? "bg-slate-900 text-white" : "bg-gray-100 text-neutral-900"}`}>
+      <Header />
+
+      {/* Hero Section */}
+      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+        {/* Background Gradients */}
+        <div className={`absolute inset-0 pointer-events-none ${darkMode ? "opacity-30" : "opacity-20"}`}>
+          <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-indigo-500 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
+          <div className="absolute top-[-10%] right-[-10%] w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"></div>
+          <div className="absolute bottom-[-10%] left-[20%] w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
         </div>
-      </section>
-      <section className={`z-10 flex relative `}>
-        <div className="z-20 mainheadline w-full">
-          <h1 className="headline1">Market Screeners :</h1>
-          <h2 className="headline2">
-            Learning From <b className="stylehead">Market's Past</b>
+
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="relative z-10 text-center max-w-5xl px-6"
+        >
+          <h1 className="text-6xl md:text-7xl font-bold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+            Trade Smarter.
+          </h1>
+          <h2 className={`text-4xl md:text-5xl font-bold tracking-tight mb-8 ${darkMode ? "text-gray-100" : "text-gray-800"}`}>
+            Learn From <span className="text-indigo-500">Market’s Past</span>
           </h2>
-          <img src={stockImage} className="stockImage" style={{paddingTop:"2vw"}} alt="" />
-        </div>
+
+          <p className={`mt-6 text-xl max-w-2xl mx-auto leading-relaxed ${darkMode ? "text-neutral-400" : "text-neutral-600"}`}>
+            Advanced stock screeners, interactive charts, and predictive
+            analytics — all in one powerful, beautifully designed platform.
+          </p>
+
+          <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+            <button className="px-8 py-4 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white transition font-semibold shadow-lg shadow-indigo-500/30 transform hover:-translate-y-1">
+              Get Started Now
+            </button>
+            <button className={`px-8 py-4 rounded-full border transition font-medium backdrop-blur-sm ${darkMode
+              ? "border-neutral-700 hover:bg-neutral-800 text-white"
+              : "border-neutral-300 hover:bg-white/50 text-neutral-800"
+              }`}>
+              View Documentation
+            </button>
+          </div>
+        </motion.div>
       </section>
-      <section className="getting-started">
-        <div className="headline3">Getting &nbsp; <b className="stylehead">Started</b></div>
-        <div className="flex items-center justify-content-center">
-          <div className="container-getting-started">
-            <div className="gradient-cards">
-              <div className={`card-getting-started ${darkMode?"bg-gray-900":"bg-gray-600"}`}>
-                <div className="container-card bg-green-box">
-                  <p className="card-title">Search For Past Stocks</p>
-                  <p className="card-description">
-                    List of different stocks is attached to the documentation. 
-                  </p>
+
+      {/* Features Section */}
+      <section className="py-32 px-6">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-20">
+            Why Choose <span className="text-indigo-500">Market Screeners</span>
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[{
+              icon: <TrendingUp size={32} />,
+              title: "Stock Screeners",
+              desc: "Search and filter historical stocks with precision."
+            }, {
+              icon: <BarChart3 size={32} />,
+              title: "Interactive Charts",
+              desc: "Analyze trends with real-time visual insights."
+            }, {
+              icon: <Zap size={32} />,
+              title: "Predictive Analytics",
+              desc: "Forecast movements using data-driven models."
+            }, {
+              icon: <ShieldCheck size={32} />,
+              title: "Reliable Data",
+              desc: "Clean, structured, and trustworthy market data."
+            }].map((f, i) => (
+              <motion.div
+                key={i}
+                whileHover={{ y: -10 }}
+                className={`rounded-3xl p-8 backdrop-blur-md shadow-md transition-all ${darkMode
+                  ? "bg-slate-800/50 hover:bg-slate-800/80"
+                  : "bg-white hover:bg-gray-50"
+                  }`}
+              >
+                <div className="p-3 bg-indigo-500/10 rounded-2xl w-fit mb-6 text-indigo-500">
+                  {f.icon}
                 </div>
-              </div>
-              <div className={`card-getting-started ${darkMode?"bg-gray-900":"bg-gray-600"}`}>
-                <div className="container-card bg-white-box">
-                  <p className="card-title">Analyse Stocks By Charts</p>
-                  <p className="card-description">
-                    Efficiently analyse your dream stocks.
-                  </p>
-                </div>
-              </div>
-              <div className={`card-getting-started ${darkMode?"bg-gray-900":"bg-gray-600"}`}>
-                <div className="container-card bg-yellow-box">
-                  <p className="card-title">Buy Stocks With Efficient Way</p>
-                  <p className="card-description">
-                    Buy stocks that will help you grow in future.
-                  </p>
-                </div>
-              </div>
-              <div className={`card-getting-started ${darkMode?"bg-gray-900":"bg-gray-600"}`}>
-                <div className="container-card bg-blue-box">
-                  <p className="card-title">Stay Updated With Current Market</p>
-                  <p className="card-description">
-                    See live stock details to stay updated with current market.
-                  </p>
-                </div>
-              </div>
-            </div>
+                <h3 className="text-xl font-bold mb-3">{f.title}</h3>
+                <p className={`text-sm leading-relaxed ${darkMode ? "text-neutral-400" : "text-neutral-500"}`}>{f.desc}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
-      <section className="analysis">
-        <div className="headline4">Giving A Through &nbsp; <b className="stylehead">Analysis</b></div>
-        <section className="design-section mt-2">
-              <div className="timeline">
-                <div className={`timeline-component timeline-content ${darkMode?"bg-gray-900":"bg-gray-600"}`}>
-                  <h3 className="card-title" >Interactive Charts and Graphs</h3>
-                  <p className="card-description">
-                    Visualize stock performance trends over time with our
-                    interactive charts. We provide clear and detailed graphs
-                    that help you track price movements, volume changes, and
-                    market fluctuations, allowing for easy comparison and
-                    analysis.
-                  </p>
-                </div>
-                <div className="timeline-middle">
-                  <div className="timeline-circle"></div>
-                </div>
-                <div className="timeline-empty"></div>
 
-                <div className="timeline-empty"></div>
-                <div className="timeline-middle">
-                  <div className="timeline-circle"></div>
-                </div>
-                <div className={`timeline-component timeline-content ${darkMode?"bg-gray-900":"bg-gray-600"}`}>
-                  <h3 className="card-title" >Data-Driven Insights</h3>
-                  <p className="card-description">
-                    Our platform uses a rich dataset to calculate key financial
-                    metrics, such as moving averages, RSI, and more. These
-                    metrics are presented in easy-to-read tables, giving you a
-                    deeper understanding of stock behavior and helping you
-                    identify potential investment opportunities.
-                  </p>
-                </div>
+      {/* Analysis Section */}
+      <section className={`py-32 px-6 ${darkMode ? "bg-slate-900/30" : "bg-gray-200/30"}`}>
+        <div className="max-w-6xl mx-auto text-center">
+          <h2 className="text-4xl md:text-5xl font-bold mb-8">Deep Market Analysis</h2>
+          <p className={`text-lg max-w-2xl mx-auto mb-16 ${darkMode ? "text-neutral-400" : "text-neutral-500"}`}>
+            From raw data to meaningful insights — everything you need to make
+            smarter investment decisions in a clean, distraction-free environment.
+          </p>
 
-                <div className={`timeline-component timeline-content ${darkMode?"bg-gray-900":"bg-gray-600"}`}>
-                  <h3 className="card-title" >Predictive Analytics</h3>
-                  <p className="card-description">
-                    By analyzing historical data, our algorithms can predict
-                    future market trends, providing you with a forward-looking
-                    perspective on stock performance. This helps you stay ahead
-                    of the market and make proactive investment decisions.
-                  </p>
-                </div>
-
-                <div className="timeline-middle">
-                  <div className="timeline-circle"></div>
-                </div>
-                <div className="timeline-empty"></div>
-
-                <div className="timeline-empty"></div>
-                <div className="timeline-middle">
-                  <div className="timeline-circle"></div>
-                </div>
-
-                <div className={`timeline-component timeline-content ${darkMode?"bg-gray-900":"bg-gray-600"}`}>
-                  <h3 className="card-title" >Comprehensive Tables</h3>
-                  <p className="card-description">
-                    Our detailed tables include essential data such as open,
-                    high, low, close prices, and trading volumes, offering you a
-                    complete picture of each stock's daily performance.
-                  </p>
-                </div>
-                <div className={`timeline-component timeline-content ${darkMode?"bg-gray-900":"bg-gray-600"}`}>
-                  <h3 className="card-title" >User-Friendly Interface</h3>
-                  <p className="card-description">
-                    Our platform is designed with simplicity in mind, making it
-                    easy for both novice and experienced investors to navigate
-                    and utilize the data.
-                  </p>
-                </div>
-                <div className="timeline-middle">
-                  <div className="timeline-circle"></div>
-                </div>
-                <div className="timeline-empty"></div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {["Technical Indicators", "Historical Data Tables", "User Friendly Interface"].map((t, i) => (
+              <div
+                key={i}
+                className={`rounded-3xl p-10 backdrop-blur-sm ${darkMode
+                  ? "bg-slate-800/50"
+                  : "bg-white"
+                  }`}
+              >
+                <h3 className="text-2xl font-bold mb-4">{t}</h3>
+                <p className={`text-sm ${darkMode ? "text-neutral-500" : "text-neutral-500"}`}>
+                  Designed to help both beginners and advanced traders understand the market with ease.
+                </p>
               </div>
-        </section>
-      </section>
-      <section className="climbing">
-        <div className="flex justify-center align-items-center">
-          <img
-            className="absolute"
-            src={climbingImage}
-            style={{ width: "90vw" }}
-            alt=""
-          />
-          <div className="z-20">
-            <h1>Whatever the trade</h1>
-            <h2>Analyse it</h2>
-            <h2>Then leap</h2>
+            ))}
           </div>
         </div>
       </section>
-      <section className="bg-transparent">
-        <div className="tradeview">
-          <h1>Trade with your #TradingView</h1>
+
+      {/* CTA Section */}
+      <section className="py-32 px-6 text-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-indigo-900/10 pointer-events-none"></div>
+        <div className="relative z-10">
+          <h2 className="text-5xl md:text-6xl font-bold mb-8">Whatever the Trade</h2>
+          <p className={`text-xl mb-10 ${darkMode ? "text-neutral-400" : "text-neutral-500"}`}>Analyze it. Understand it. Then leap.</p>
+          <button className="px-10 py-5 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white transition font-bold shadow-2xl hover:shadow-indigo-500/50 text-lg">
+            Start Trading Smart
+          </button>
         </div>
       </section>
-      <section className="footersection">
-        <div className="footer" style={{
-            border: darkMode
-              ? "3px solid rgba(255, 255, 255, 0.247)"
-              : "3px solid rgba(34, 85, 195, 0.247)",
-          }}>
-          <Footer/>
-        </div>
-      </section>
+
+      <Footer />
     </div>
   );
-};
-
-export default LandingPage;
+}

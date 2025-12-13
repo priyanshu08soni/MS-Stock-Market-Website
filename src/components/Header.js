@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { MdOutlineLeaderboard } from "react-icons/md";
 import { NavLink, useLocation } from "react-router-dom";
 import ThemeIcon from "./ThemeIcon";
 import ThemeContext from "../context/ThemeContext";
@@ -8,89 +7,79 @@ const Header = () => {
   const { setDarkMode, darkMode } = useContext(ThemeContext);
   const location = useLocation();
   const isDashboard = location.pathname === "/dashboard";
-  function menuOnClick() {
-    document.getElementById("menu-bar")?.classList.toggle("change");
-    document.getElementById("nav")?.classList.toggle("change");
-    document.getElementById("menu-bg")?.classList.toggle("change-bg");
-  }
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
     <>
-      <header className="flex align-items-center justify-between">
-        <div>
-          <div id="menu">
-            <div id="menu-bar" onClick={menuOnClick}>
-              <div id="bar1" className="bar"></div>
-              <div id="bar2" className="bar"></div>
-              <div id="bar3" className="bar"></div>
-            </div>
-            <nav class="nav" id="nav">
-              <ul>
-                <li>
-                  <NavLink
-                    to="/"
-                    className={({ isActive }) =>
-                      `navlink ${isActive ? "active-link" : ""}`
-                    }
-                  >
-                    Home
-                  </NavLink>
-                </li>
-                <li
-                  onClick={() => {
-                    if (!isDashboard) {
-                      setDarkMode(true);
-                    }
-                  }}
-                >
-                  <NavLink
-                    to="/dashboard"
-                    className={({ isActive }) =>
-                      `navlink ${isActive ? "active-link" : ""}`
-                    }
-                  >
-                    Dashboard
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/docs"
-                    className={({ isActive }) =>
-                      `navlink ${isActive ? "active-link" : ""}`
-                    }
-                  >
-                    Documentation
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/about"
-                    className={({ isActive }) =>
-                      `navlink ${isActive ? "active-link" : ""}`
-                    }
-                  >
-                    About
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/contact"
-                    className={({ isActive }) =>
-                      `navlink ${isActive ? "active-link" : ""}`
-                    }
-                  >
-                    Contact
-                  </NavLink>
-                </li>
-                <li>
-                  <ThemeIcon />
-                </li>
-              </ul>
-            </nav>
+      <header className={`sticky top-0 z-50 px-8 py-4 flex items-center justify-between backdrop-blur-md border-b border-opacity-10 shadow-sm transition-colors duration-300 ${darkMode ? "bg-neutral-900/80 border-white" : "bg-white/80 border-black"}`}>
+        <div className="flex items-center gap-8">
+          <div className={`text-2xl font-bold tracking-tighter ${darkMode ? "text-indigo-400" : "text-indigo-600"}`}>
+            Market<span className={darkMode ? "text-white" : "text-gray-900"}>Screeners</span>
           </div>
-          <div class="menu-bg" id="menu-bg"></div>
+
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex items-center gap-6">
+            {["Home", "Dashboard", "Docs", "About", "Contact"].map((item) => {
+              const path = item === "Home" ? "/" : `/${item.toLowerCase()}`;
+              return (
+                <NavLink
+                  key={item}
+                  to={path}
+                  className={({ isActive }) =>
+                    `text-sm font-medium transition-colors hover:text-indigo-500 ${isActive
+                      ? (darkMode ? "text-white" : "text-black")
+                      : (darkMode ? "text-gray-400" : "text-gray-500")
+                    }`
+                  }
+                >
+                  {item}
+                </NavLink>
+              )
+            })}
+          </nav>
         </div>
-        <div className={`z-10 websitename text-blue-700 `}>MS</div>
+
+        <div className="flex items-center gap-4">
+          <div onClick={() => !isDashboard && setDarkMode(!darkMode)} className="cursor-pointer">
+            <ThemeIcon />
+          </div>
+          {/* Mobile Menu Trigger */}
+          <div onClick={toggleMenu} className={`md:hidden cursor-pointer flex flex-col gap-1.5 z-50 ${isMenuOpen ? "change" : ""}`}>
+            <div className={`w-8 h-0.5 transition-all duration-300 ${darkMode ? "bg-white" : "bg-black"} ${isMenuOpen ? "rotate-45 translate-y-2" : ""}`}></div>
+            <div className={`w-8 h-0.5 transition-all duration-300 ${darkMode ? "bg-white" : "bg-black"} ${isMenuOpen ? "opacity-0" : ""}`}></div>
+            <div className={`w-8 h-0.5 transition-all duration-300 ${darkMode ? "bg-white" : "bg-black"} ${isMenuOpen ? "-rotate-45 -translate-y-2" : ""}`}></div>
+          </div>
+        </div>
       </header>
+
+      {/* Mobile Menu Overlay */}
+      <div className={`fixed inset-0 z-40 md:hidden transition-all duration-300 ${isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"} ${darkMode ? "bg-neutral-900" : "bg-white"}`}>
+        <div className="flex flex-col items-center justify-center h-full gap-8">
+          {["Home", "Dashboard", "Docs", "About", "Contact"].map((item) => (
+            <NavLink
+              key={item}
+              to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+              onClick={closeMenu}
+              className={({ isActive }) =>
+                `text-2xl font-bold transition-transform hover:scale-110 ${isActive
+                  ? (darkMode ? "text-indigo-400" : "text-indigo-600")
+                  : (darkMode ? "text-white" : "text-gray-800")
+                }`
+              }
+            >
+              {item}
+            </NavLink>
+          ))}
+        </div>
+      </div>
     </>
   );
 };

@@ -4,7 +4,7 @@ import StockContext from "../context/StockContext";
 
 const SearchResult = ({ results, setInput,input }) => {
   const { darkMode } = useContext(ThemeContext);
-  const {stockSymbol, setStockSymbol } = useContext(StockContext);
+  const { setStockSymbol } = useContext(StockContext);
   const [newData, setNewData] = useState([]);
   //To update the mapping data we have 
   //create a new data and then update the 

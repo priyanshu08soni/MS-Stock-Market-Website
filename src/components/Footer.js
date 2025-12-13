@@ -4,43 +4,46 @@ import ThemeContext from '../context/ThemeContext';
 
 const Footer = () => {
     const { darkMode } = useContext(ThemeContext);
-  return (
-    <footer >
-        <div className={`w-full mainfooter flex ${darkMode?"text-white":"text-gray-600"}`}>
-            <div className='footer-content1 w-25 flex flex-wrap'>
-                <div className=" footer-logo flex align-content-center py-2"><MdOutlineLeaderboard  /></div>
-                <div className='my-2'>
-                    <h1 className='footer-font-1'>MS</h1>
-                    <h1 className='footer-font-1'>Learn from market's past</h1>
+    return (
+        <footer className={`w-full transition-colors duration-300 border-t ${darkMode ? "bg-neutral-900 border-neutral-800 text-gray-400" : "bg-white border-indigo-100 text-gray-600"}`}>
+            <div className="max-w-7xl mx-auto px-6 py-12 flex flex-col lg:flex-row justify-between gap-12">
+                <div className='flex flex-col gap-4 max-w-sm'>
+                    <div className="flex items-center gap-3 text-indigo-500">
+                        <MdOutlineLeaderboard size={32} />
+                        <span className="text-2xl font-bold tracking-tight">MS</span>
+                    </div>
+                    <p className="text-sm opacity-80 leading-relaxed">
+                        Learn from the market's past to build a smarter future.
+                        Our platform provides comprehensive data analysis tools for the Nifty-50 index.
+                    </p>
+                </div>
+
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-8 lg:gap-16">
+                    <div className='flex flex-col gap-4'>
+                        <h3 className={`font-bold text-sm tracking-wider uppercase ${darkMode ? "text-gray-200" : "text-gray-900"}`}>Company</h3>
+                        <div className="flex flex-col gap-2 text-sm">
+                            <span className="hover:text-indigo-500 cursor-pointer transition">Privacy Policy</span>
+                            <span className="hover:text-indigo-500 cursor-pointer transition">Terms of Use</span>
+                            <span className="hover:text-indigo-500 cursor-pointer transition">Disclaimer</span>
+                            <span className="hover:text-indigo-500 cursor-pointer transition">Contact Us</span>
+                        </div>
+                    </div>
+
+                    <div className='flex flex-col gap-4'>
+                        <h3 className={`font-bold text-sm tracking-wider uppercase ${darkMode ? "text-gray-200" : "text-gray-900"}`}>Resources</h3>
+                        <div className="flex flex-col gap-2 text-sm">
+                            <span className="hover:text-indigo-500 cursor-pointer transition">Blog</span>
+                            <span className="hover:text-indigo-500 cursor-pointer transition">Widgets</span>
+                            <span className="hover:text-indigo-500 cursor-pointer transition">FAQ</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div className={`footer-content2 flex flex-wrap w-75 ${darkMode?"text-white":"text-gray-600}"}`}>
-                <div className='flex flex-wrap' >
-                    <div className='px-5 py-2'>
-                        <h1 className='footer-font-1'>COMPANY</h1>
-                        <h2 className='footer-font-2'>Privacy Policy</h2>
-                        <h2 className='footer-font-2'>Terms of Use</h2>
-                    </div>
-                    <div className='px-5 py-2'>
-                        <h2 className='footer-font-2'>Disclaimer</h2>
-                        <h2 className='footer-font-2'>Contact Us</h2>
-                    </div>
-                </div>
-                <div className='flex flex-wrap'>
-                    <div className='px-5 py-2'>
-                        <h1 className='footer-font-1'>RESOURCES</h1>
-                        <h2 className='footer-font-2'>Blog</h2>
-                        <h2 className='footer-font-2'>Stock Market Widgets</h2>
-                    </div>
-                    <div className='px-5 py-2'>
-                        <h2 className='footer-font-2'>FAQ</h2>
-                    </div>
-                </div>
+            <div className={`py-6 text-center text-xs border-t ${darkMode ? "border-neutral-800" : "border-gray-100"}`}>
+                &copy; {new Date().getFullYear()} MS Stock Screeners. All Rights Reserved.
             </div>
-        </div>
-        <div className={`mx-4 py-2 ${darkMode?"text-white":"text-gray-600"}`}>&copy; Developers | All Right Reserved</div>
-    </footer>
-  )
+        </footer>
+    )
 }
 
 export default Footer

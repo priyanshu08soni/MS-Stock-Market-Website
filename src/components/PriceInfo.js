@@ -4,45 +4,19 @@ import ThemeContext from "../context/ThemeContext";
 const PriceInfo = ({ details }) => {
   const { darkMode } = useContext(ThemeContext);
   return (
-    <div
-      className={`w-full card rounded-md relative p-8 border-2 custom-scrollbar shadow-md ${
-        darkMode
-          ? "bg-gray-900 border-gray-800"
-          : "bg-blue-100 border-neutral-200"
-      } `}
-      style={{ color: "gray", overflow: "auto" }}
-    >
-      <h1 className="text-2xl" style={{ padding: "10px" }}>
-        Price Information ( for above table )
-      </h1>
-      <ul
-        className={`w-full h-full flex flex-col justify-between divide-y-1 text-sm ${
-          darkMode ? "divide-gray-800" : null
-        }`}
-      >
-
-        <li
-          className="flex-1 flex justify-between items-center"
-          style={{ margin: "4px", padding: "10px", borderRadius: "5px" }}
-        >
-          <span className="w-50">Upper Band </span>
-          <span className="w-50">{(details[0]?.pclose * 1.1).toFixed(2)}</span>
-        </li>
-        <li
-          className="flex-1 flex justify-between items-center"
-          style={{ margin: "4px", padding: "10px", borderRadius: "5px" }}
-        >
-          <span className="w-50">Lower Band</span>
-          <span className="w-50">{(details[0]?.pclose * 0.9).toFixed(2)}</span>
-        </li>
-        <li
-          className="flex-1 flex justify-between items-center"
-          style={{ margin: "4px", padding: "10px", borderRadius: "5px" }}
-        >
-          <span className="w-50">Price Band</span>
-          <span className="w-50">No Band</span>
-        </li>
-      </ul>
+    <div className={`rounded-2xl h-full transition-colors duration-300 bg-transparent`}>
+      <div className="space-y-3">
+        {[
+          { label: "Upper Band", value: (details[0]?.pclose * 1.1).toFixed(2) },
+          { label: "Lower Band", value: (details[0]?.pclose * 0.9).toFixed(2) },
+          { label: "Price Band", value: "No Band" }
+        ].map((item, index) => (
+          <div key={index} className={`flex justify-between items-center p-3 rounded-xl transition ${darkMode ? "bg-white/5 hover:bg-white/10" : "bg-gray-50 hover:bg-indigo-50"}`}>
+            <span className={`text-sm ${darkMode ? "text-gray-400" : "text-gray-500"}`}>{item.label}</span>
+            <span className={`font-mono font-medium ${darkMode ? "text-gray-200" : "text-gray-800"}`}>{item.value}</span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

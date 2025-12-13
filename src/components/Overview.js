@@ -13,7 +13,7 @@ const Overview = () => {
   return (
     <>
       <div
-        className={`w-full h-full card d-flex flex-col justify-center rounded-md relative pb-5 pt-5  custom-scrollbar bg-transparent
+        className={`w-full h-full card d-flex flex-col justify-center relative  custom-scrollbar bg-transparent
         }`}
         style={{ color: "gray", overflow: "auto" }}
       >
@@ -26,17 +26,16 @@ const Overview = () => {
               type="text"
               id="search"
               value={input}
-              className={`w-full form__field focus:outline-none shadow-md ${
-                darkMode ? "bg-gray-700" : "text-black"
-              }`}
+              className={`w-full form__field focus:outline-none shadow-md ${darkMode ? "bg-gray-700" : "text-black"
+                }`}
               placeholder="Search stock ... and press enter"
               onChange={(e) => {
                 setInput(e.target.value);
               }}
               onKeyDown={() => {
-                  updateBestMatches();
+                updateBestMatches();
               }}
-      
+
             />
             <label for="name" class="form__label">
               <h1>Search</h1>
